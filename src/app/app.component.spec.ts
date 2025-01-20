@@ -17,13 +17,13 @@ describe('AppComponent', () => {
   it(`should have the 'yoga-flow-fe' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('yoga-flow-fe');
+    expect(app.title).toEqual('YogaFlow');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, yoga-flow-fe');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, YogaFlow');
   });
 });
