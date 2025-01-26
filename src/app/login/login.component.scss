@@ -1,0 +1,43 @@
+* {
+  // border: 1px solid orange;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0dcd9;
+}
+
+.left-side {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70vh;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+  }
+
+  label,
+  button {
+    margin: 2vh;
+  }
+}
+
+.right-side {
+  background-color: #718EC4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70vh;
+
+  h3 {
+    font-size: 5vh;
+  }
+}
