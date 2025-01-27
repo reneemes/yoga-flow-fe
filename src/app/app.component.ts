@@ -6,8 +6,6 @@ import { HeaderComponent } from './components/header/header.component';
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent],
   template: `
-    <h1>{{title}}!</h1>
-
     <router-outlet />
   `,
   styles: [],
