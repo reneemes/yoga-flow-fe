@@ -20,10 +20,34 @@ export class LoginComponent {
     password: ''
   };
 
-  submitForm(form: NgForm) {
+  async submitLogin(form: NgForm) {
     if(form.valid) {
-      console.log(form.value, this.user);
+      console.log(form.value, this.user.email);
       // fetch to BE for login user
+      const url = "http://localhost:3000/api/v1/sessions";
+      const loginData = {
+        email: this.user.email,
+        password: this.user.password
+      }
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // Specify JSON format
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(loginData)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        console.log(json);
+      } catch (error: any) {
+        console.error(error.message);
+      }
     }
   }
 
