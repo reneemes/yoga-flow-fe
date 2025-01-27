@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 interface User {
   email: string,
@@ -13,6 +14,7 @@ interface User {
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  constructor(private router: Router) {}
   title = "Login";
 
   user: User = {
@@ -22,7 +24,7 @@ export class LoginComponent {
 
   async submitLogin(form: NgForm) {
     if(form.valid) {
-      console.log(form.value, this.user.email);
+      // console.log(form.value, this.user.email);
       // fetch to BE for login user
       const url = "http://localhost:3000/api/v1/sessions";
       const loginData = {
@@ -33,7 +35,7 @@ export class LoginComponent {
         const response = await fetch(url, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json", // Specify JSON format
+            "Content-Type": "application/json",
             "Accept": "application/json"
           },
           body: JSON.stringify(loginData)
@@ -45,8 +47,10 @@ export class LoginComponent {
 
         const json = await response.json();
         console.log(json);
+        this.router.navigate(['home']);
       } catch (error: any) {
         console.error(error.message);
+        alert("Invalid login credentials");
       }
     }
   }
