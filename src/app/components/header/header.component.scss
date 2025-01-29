@@ -1,0 +1,52 @@
+* {
+  // border: 1px solid orange;
+  margin: 0;
+}
+
+.nav-wrapper {
+  background-color: #787fa1;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  margin: 0 1vw;
+}
+
+.title {
+  color: #f1dcd9;
+  font-size: 6vh;
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  // justify-content: flex-end;
+  // width: 28vw;
+  
+  a {
+    // border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #f1dcd9;
+    height: 40px;
+    width: 150px;
+    margin: 0 8px;
+    cursor: pointer;
+    font-size: 3vh;
+    // color: #dc8998;
+    color: #787fa1;
+  }
+
+  .account-but {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    font-size: small;
+  }
+}
