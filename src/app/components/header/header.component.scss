@@ -12,23 +12,26 @@
   align-items: center;
   justify-content: space-between;
   height: 80px;
+  // width: 100%;
   margin: 0 1vw;
 }
 
 .title {
   color: #f1dcd9;
-  font-size: 6vh;
+  // font-size: 6vh;
+  font-size: 60px;
   cursor: pointer;
+}
+
+.title:hover {
+  color: #fec5b9;
 }
 
 .buttons {
   display: flex;
   align-items: center;
-  // justify-content: flex-end;
-  // width: 28vw;
   
   a {
-    // border: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,15 +41,19 @@
     width: 150px;
     margin: 0 8px;
     cursor: pointer;
-    font-size: 3vh;
-    // color: #dc8998;
+    // font-size: 3vh;
+    font-size: 30px;
     color: #787fa1;
   }
 
-  .account-but {
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    font-size: small;
+  a:hover {
+    background-color: #fec5b9;
   }
+
+  svg {
+    cursor: pointer;
+  }
+  // svg:hover {
+  //   background-color: #fec5b9;
+  // }
 }
