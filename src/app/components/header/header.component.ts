@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   imports: [],
-  // templateUrl: './header.component.html',
   template: `
     <div class="nav-wrapper">
       <nav class="nav-bar">
