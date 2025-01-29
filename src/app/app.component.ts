@@ -1,15 +1,25 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-// import { HeaderComponent } from './components/header/header.component';
+import { RouterOutlet, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, HeaderComponent, CommonModule],
   template: `
+    <app-header *ngIf="currentUrl !== '/'"></app-header>
     <router-outlet />
   `,
   styles: [],
 })
 export class AppComponent {
   title = 'YogaFlow';
+  currentUrl: string = '';
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(() => {
+      this.currentUrl = this.router.url;
+    });
+  };
 }
