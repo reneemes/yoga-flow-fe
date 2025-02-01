@@ -8,10 +8,12 @@ import { HeaderComponent } from './components/header/header.component';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, CommonModule],
   template: `
-    <app-header *ngIf="currentUrl !== '/'"></app-header>
+    @if (currentUrl !== '/') {
+      <app-header></app-header>
+    }
     <router-outlet />
-  `,
-  styles: [],
+    `,
+    styles: []
 })
 export class AppComponent {
   title = 'YogaFlow';
