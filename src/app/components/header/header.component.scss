@@ -1,52 +1,106 @@
 .nav-wrapper {
   background-color: #787fa1;
-}
 
-.nav-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 80px;
-  // width: 100%;
-  margin: 0 1vw;
-}
-
-.title {
-  color: #f1dcd9;
-  font-size: 60px;
-  cursor: pointer;
-}
-
-.title:hover {
-  color: #fec5b9;
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  
-  a {
+  .nav-bar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    background-color: #f1dcd9;
-    height: 40px;
-    width: 150px;
-    margin: 0 8px;
-    cursor: pointer;
-    font-size: 30px;
-    color: #787fa1;
-  }
+    justify-content: space-between;
+    height: 80px;
+    margin: 0 1vw;
 
-  a:hover {
-    background-color: #fec5b9;
-  }
+    .title {
+      color: #f1dcd9;
+      font-size: 60px;
+      cursor: pointer;
 
-  svg {
-    cursor: pointer;
+      &:hover {
+        color: #fec5b9;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: #f1dcd9;
+        height: 40px;
+        width: 150px;
+        margin: 0 8px;
+        cursor: pointer;
+        font-size: 30px;
+        color: #787fa1;
+
+        &:hover {
+          background-color: #fec5b9;
+        }
+      }
+
+      svg {
+        cursor: pointer;
+
+        // Uncomment if you want the hover effect on the SVG
+        // &:hover {
+        //   background-color: #fec5b9;
+        // }
+      }
+    }
   }
-  // svg:hover {
-  //   background-color: #fec5b9;
-  // }
 }
+
+// .nav-wrapper {
+//   background-color: #787fa1;
+// }
+
+// .nav-bar {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   height: 80px;
+//   // width: 100%;
+//   margin: 0 1vw;
+// }
+
+// .title {
+//   color: #f1dcd9;
+//   font-size: 60px;
+//   cursor: pointer;
+// }
+
+// .title:hover {
+//   color: #fec5b9;
+// }
+
+// .buttons {
+//   display: flex;
+//   align-items: center;
+  
+//   a {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     border-radius: 10px;
+//     background-color: #f1dcd9;
+//     height: 40px;
+//     width: 150px;
+//     margin: 0 8px;
+//     cursor: pointer;
+//     font-size: 30px;
+//     color: #787fa1;
+//   }
+
+//   a:hover {
+//     background-color: #fec5b9;
+//   }
+
+//   svg {
+//     cursor: pointer;
+//   }
+//   // svg:hover {
+//   //   background-color: #fec5b9;
+//   // }
+// }

@@ -18,10 +18,28 @@ export class LoginComponent {
   constructor(private router: Router, private userService: UserService) {}
   title = "Login";
 
+  // input = document.getElementById("myInput");
+  // text = document.getElementById("text");
+  // input.addEventListener("keyup", function(event) {
+
+  // if (event.getModifierState("CapsLock")) {
+  //     this.text.style.display = "block";
+  //   } else {
+  //     this.text.style.display = "none"
+  //   }
+  // });
+
   user: User = {
     email: '',
     password: ''
   };
+
+  togglePassword() {
+    let passwordInput = document.getElementById("password") as HTMLInputElement;
+    if (passwordInput) {
+      passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    }
+  }
 
   async submitLogin(form: NgForm) {
     if(form.valid) {
