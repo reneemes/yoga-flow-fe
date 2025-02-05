@@ -19,3 +19,40 @@ a {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  --shadow-color: 0deg 0% 63%;
+  --shadow-elevation-low:
+    0px 0.4px 0.5px hsl(var(--shadow-color) / 0.34),
+    0px 0.6px 0.7px -1.2px hsl(var(--shadow-color) / 0.34),
+    0.1px 1.5px 1.7px -2.5px hsl(var(--shadow-color) / 0.34);
+  --shadow-elevation-medium:
+    0px 0.4px 0.5px hsl(var(--shadow-color) / 0.36),
+    0.1px 1.2px 1.4px -0.8px hsl(var(--shadow-color) / 0.36),
+    0.1px 3px 3.4px -1.7px hsl(var(--shadow-color) / 0.36),
+    0.3px 7.4px 8.3px -2.5px hsl(var(--shadow-color) / 0.36);
+  --shadow-elevation-high:
+    0px 0.4px 0.5px hsl(var(--shadow-color) / 0.38),
+    0.1px 2.4px 2.7px -0.4px hsl(var(--shadow-color) / 0.38),
+    0.2px 4.8px 5.4px -0.8px hsl(var(--shadow-color) / 0.38),
+    0.4px 8.4px 9.5px -1.2px hsl(var(--shadow-color) / 0.38),
+    0.7px 14.2px 16px -1.7px hsl(var(--shadow-color) / 0.38),
+    1.1px 23.4px 26.4px -2.1px hsl(var(--shadow-color) / 0.38),
+    1.7px 36.9px 41.6px -2.5px hsl(var(--shadow-color) / 0.38);
+  --dark-green:
+    #2C6E49;
+  --light-green:
+    #4c956c;
+  --peach:
+    #ffc9b9;
+  --cream:
+    #fefee3;
+  --tan-peach:
+    #FFA990;
+  --tan:
+    #d68c45;
+  --light-blue:
+    #8abcc7;
+  --blue:
+    #6AB6C7;
+}

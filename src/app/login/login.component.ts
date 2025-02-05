@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 interface User {
   email: string,
@@ -14,18 +15,34 @@ interface User {
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
   title = "Login";
+
+  // input = document.getElementById("myInput");
+  // text = document.getElementById("text");
+  // input.addEventListener("keyup", function(event) {
+
+  // if (event.getModifierState("CapsLock")) {
+  //     this.text.style.display = "block";
+  //   } else {
+  //     this.text.style.display = "none"
+  //   }
+  // });
 
   user: User = {
     email: '',
     password: ''
   };
 
+  togglePassword() {
+    let passwordInput = document.getElementById("password") as HTMLInputElement;
+    if (passwordInput) {
+      passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    }
+  }
+
   async submitLogin(form: NgForm) {
     if(form.valid) {
-      // console.log(form.value, this.user.email);
-      // fetch to BE for login user
       const url = "http://localhost:3000/api/v1/sessions";
       const loginData = {
         email: this.user.email,
@@ -47,6 +64,9 @@ export class LoginComponent {
 
         const json = await response.json();
         console.log(json);
+        // Save user info using UserService
+        this.userService.setUserInfo(json);
+        // Navigate to home after successful login
         this.router.navigate(['home']);
       } catch (error: any) {
         console.error(error.message);

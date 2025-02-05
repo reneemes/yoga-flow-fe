@@ -1,1 +1,19 @@
-<p>home works!</p>
+<div class="home">
+  <div class="top-elements">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600" rel="stylesheet">
+    @if (userInfo) {
+      <h2>Namaste, {{ userInfo.user.data.attributes.name }}</h2>
+    }
+    
+    <section class="daily-streak">
+      <h2>20 Days of Practice!</h2>
+      <button>Log Practice</button>
+    </section>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="/poses">Explore Poses</a>
+    <a href="/routines">View Saved Routines</a>
+    <a href="/new-routine">Create A New Routine</a>
+  </div>
+</div>
