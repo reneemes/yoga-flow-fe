@@ -28,9 +28,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 10px;
+        border-radius: 5px;
         background-color: white;
-        // background-color: #FEC5B9;
         height: 40px;
         width: 150px;
         margin: 0 8px;
@@ -40,8 +39,8 @@
         transition-duration: 0.4s;
         
         &:hover {
-          background-color: #fec5b9;
-          // transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+          color: var(--light-green);
+          background-color: whitesmoke;
         }
       }
 
@@ -53,15 +52,29 @@
 
         &:hover {
           color: var(--light-green);
-          // color: var(--deep-green);
         }
       }
     }
   }
 }
 
-@media screen and (max-width: 450px) {
-  .buttons {
-    visibility: hidden;
-  }
+.mobile-buttons {
+  display: none;
 }
+
+// iPad Air
+// @media screen and (max-width: 820px) {
+//   .nav-wrapper{
+//     width: 100%;
+//   }
+// }
+// // iPhone 14 Pro Max
+// @media screen and (max-width: 450px) {
+//   .buttons {
+//     display: none;
+//   }
+
+//   .mobile-buttons {
+//     display: visible;
+//   }
+// }

@@ -13,6 +13,11 @@ import { Router } from '@angular/router';
           <a href="/routines" class="routine-but">Routines</a>
           <i class="material-icons">account_circle</i>
         </div>
+        <div class="mobile-buttons">
+          <a href="/poses" class="poses-but">Poses</a>
+          <a href="/routines" class="routine-but">Routines</a>
+          <i class="material-icons">account_circle</i>
+        </div>
       </nav>
     </div>
   `,
