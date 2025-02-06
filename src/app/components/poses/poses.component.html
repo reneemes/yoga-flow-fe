@@ -1,0 +1,23 @@
+<div class="poses-view">
+  <h2>Poses</h2>
+  @if (!data) {
+    <p>Loading...</p>
+  }
+  <section class="search-and-filter">
+    <!-- <div class="search-bar"> -->
+      <i class="material-icons" alt="Search Icon">search</i>
+      <input type="search" placeholder="Search...">
+    <!-- </div> -->
+    <!-- <button>Filter</button> -->
+    <i class="material-icons" alt="Filter Icon">filter_list</i>
+  </section>
+  <section class="poses-container">
+    @for (pose of data; track pose.data.id) {
+      <div class="pose">
+        <img src="{{pose.data.attributes.image_url}}" alt="Girl in a jacket"/>
+        <h3>{{pose.data.attributes.name}}</h3>
+        <p>{{pose.data.attributes.sanskrit_name}}</p>
+      </div>
+    }
+  </section>
+</div>
