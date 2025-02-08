@@ -11,34 +11,20 @@
 
 .search-and-filter {
   display: flex;
+  align-items: center;
   justify-content: flex-start;
   width: 63vw;
-  
 
-  // .search-bar {
-    // border-radius: 5px;
-    // background-color: whitesmoke;
-    // display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    // height: 50px;
-    // width: 250px;
-
-    input {
-      // border: none;
-      border-radius: 5px;
-      height: 30px;
-      width: 200px;
-      // margin: 10px;
-      margin: 0 50px 0 0;
-      // margin-left: 0;
-      padding: 5px;
-    }
-  // }
+  input {
+    border-radius: 5px;
+    height: 30px;
+    width: 200px;
+    margin: 0 50px 0 0;
+    padding: 5px;
+  }
 
   i {
     font-size: 40px;
-    // margin: 10px;
     cursor: pointer;
   }
 }
@@ -59,10 +45,19 @@
     width: 350px;
     margin: 5px;
     padding: 8px;
-    // cursor: pointer;
+    cursor: pointer;
 
     img {
       height: 200px;
+    }
+
+    h3 {
+      font-size: xx-large;
+      margin: 5px;
+    }
+
+    p {
+      margin: 5px;
     }
   }
 }
