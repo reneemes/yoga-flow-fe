@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 interface Pose {
   data: {
@@ -16,15 +18,19 @@ interface Pose {
 
 @Component({
   selector: 'app-poses',
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './poses.component.html',
   styleUrl: './poses.component.scss'
 })
 export class PosesComponent {
-  constructor(private router: Router, private userService: UserService) {}
+  // @ViewChild('filterMenu', { static: false }) filterMenu!: ElementRef<HTMLDivElement>;
+
+  constructor(private router: Router, private userService: UserService, private elementRef: ElementRef) {}
+  
   data: any = null;
   allData: any = null;
-  movieSearch: string = "";
+  poseSearch: string = "";
+  filterMenuOpen = false;
 
   ngOnInit() {
     if (this.data === null) {
@@ -53,22 +59,38 @@ export class PosesComponent {
   };
 
   searchPoses(event: any) {
-    if (this.movieSearch.trim() === "") {
+    if (this.poseSearch.trim() === "") {
       this.data = this.allData; // Reset to original data when search is empty
     } else {
-      this.data = this.allData.filter((pose: any) =>
-        pose.data.attributes.name.toLowerCase().includes(this.movieSearch.toLowerCase())
-      );
+      this.data = this.allData.filter((pose: any) => {
+        const poseName = pose.data.attributes.name.toLowerCase();
+        const sanskritName = pose.data.attributes.sanskrit_name.toLowerCase();
+
+        return (
+          poseName.includes(this.poseSearch.toLowerCase()) ||
+          sanskritName.includes(this.poseSearch.toLowerCase())
+        )
+      });
     }
-    // let search = event.target.value;
-    // this.movieSearch = search
-    // if (search !== "") {
-    //   const filteredPoses = this.data.filter(pose: any => {
-    //     return pose.data.attributes.name.toLowerCase().includes(search.toLowerCase())
-    //   })
-    //   return filteredPoses
-    // }
   }
+
+  toggleFilterMenu() {
+    this.filterMenuOpen = !this.filterMenuOpen;
+  };
+
+  // @HostListener('document:click', ['$event'])
+  // onClickOutsideFilterMenu(event: Event) {
+  //   // if (!this.elementRef.nativeElement.contains(event.target)) {
+  //   //   this.filterMenuOpen = false;
+  //   // }
+  //   if (
+  //     this.filterMenu &&
+  //     this.filterMenu.nativeElement &&
+  //     !this.filterMenu.nativeElement.contains(event.target)
+  //   ) {
+  //     this.filterMenuOpen = false;
+  //   }
+  // };
 
   handlePoseClick(id: number) {
     this.router.navigate([`poses/${id}`]);
