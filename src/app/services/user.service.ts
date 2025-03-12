@@ -25,7 +25,7 @@ export class UserService {
 
   constructor() {}
 
-   // Store user info in localStorage
+  // Store user info in localStorage
   setUserInfo(info: User): void {
     localStorage.setItem('userInfo', JSON.stringify(info));
   }

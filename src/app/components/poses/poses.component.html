@@ -1,0 +1,43 @@
+<div class="poses-view">
+  <h2>Poses</h2>
+
+  <section class="search-and-filter">
+    <i class="material-icons" alt="Search Icon">search</i>
+    <input type="search"
+      id="pose-search"
+      placeholder="Search..."
+      [(ngModel)]="poseSearch"
+      (input)="searchPoses($event)"
+    >
+  
+    <!-- Click to toggle filter menu -->
+    <i id="filter-button" class="material-icons" alt="Filter Icon" (click)="toggleFilterMenu()">filter_list</i>
+  
+    <!-- Filter menu -->
+    <div class="filter-menu" [ngClass]="{ 'open': filterMenuOpen }">
+      <label>
+        <input className="filterInput" type="checkbox"> Beginner
+      </label>
+      <label>
+        <input className="filterInput" type="checkbox"> Intermediate
+      </label>
+      <label>
+        <input className="filterInput" type="checkbox"> Advanced
+      </label>
+    </div>
+  </section>
+
+  @if (!data) {
+    <p>Loading...</p>
+  }
+  
+  <section class="poses-container">
+    @for (pose of data; track pose.data.id) {
+      <div class="pose" (click)="handlePoseClick(pose.data.id)">
+        <img src="{{pose.data.attributes.image_url}}" alt="Girl in a jacket"/>
+        <h3>{{pose.data.attributes.name}}</h3>
+        <p>{{pose.data.attributes.sanskrit_name}}</p>
+      </div>
+    }
+  </section>
+</div>
