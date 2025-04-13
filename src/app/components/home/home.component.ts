@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/user/user.service';
 
 interface User {
   token: string,
@@ -27,8 +27,7 @@ export class HomeComponent {
   
   ngOnInit() {
     this.userInfo = this.userService.getUserInfo();
-  // const userData = this.userService.getUserInfo();
-  console.log(this.userInfo, "userInfo")
+    // console.log(this.userInfo, "userInfo")
     if (!this.userInfo) {
       console.log("No user data found. Redirecting to login...");
       // Handle no user data (optional: redirect to login)

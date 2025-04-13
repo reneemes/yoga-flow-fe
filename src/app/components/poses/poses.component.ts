@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { UserService } from '../../services/user.service';
+// import { UserService } from '../../services/user/user.service';
+import { IdService } from '../../services/id/id.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -23,14 +24,21 @@ interface Pose {
   styleUrl: './poses.component.scss'
 })
 export class PosesComponent {
-  // @ViewChild('filterMenu', { static: false }) filterMenu!: ElementRef<HTMLDivElement>;
-
-  constructor(private router: Router, private userService: UserService, private elementRef: ElementRef) {}
+  constructor(
+    private router: Router,
+    // private userService: UserService,
+    private idService: IdService,
+    private elementRef: ElementRef
+  ) {
+    // this.data.currentId.subscribe(id => this.id = id)
+    // console.log(this.data.currentId, "<>currentId")
+  };
   
   data: any = null;
   allData: any = null;
   poseSearch: string = "";
   filterMenuOpen = false;
+  id: string | null = null;
 
   ngOnInit() {
     if (this.data === null) {
@@ -77,20 +85,6 @@ export class PosesComponent {
   toggleFilterMenu() {
     this.filterMenuOpen = !this.filterMenuOpen;
   };
-
-  // @HostListener('document:click', ['$event'])
-  // onClickOutsideFilterMenu(event: Event) {
-  //   // if (!this.elementRef.nativeElement.contains(event.target)) {
-  //   //   this.filterMenuOpen = false;
-  //   // }
-  //   if (
-  //     this.filterMenu &&
-  //     this.filterMenu.nativeElement &&
-  //     !this.filterMenu.nativeElement.contains(event.target)
-  //   ) {
-  //     this.filterMenuOpen = false;
-  //   }
-  // };
 
   handlePoseClick(id: number) {
     this.router.navigate([`poses/${id}`]);
