@@ -5,7 +5,7 @@
   <!-- <i class="material-icons">keyboard_backspace</i> -->
   <section class="pose-details">
     <h1 class="pose-name">{{ formatName() }}</h1>
-    <img class="pose-img" src="{{data.data.attributes.image_url}}"/>
+    <img class="pose-img" src="{{data.data.attributes.image_url}}" alt="{{ formatName() }}"/>
 
     <h3 class="sanskrit-name">Sanskrit: {{data.data.attributes.sanskrit_name}}</h3>
     <p class="name-translation">{{data.data.attributes.translation_name}}</p>
