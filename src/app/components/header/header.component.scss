@@ -1,12 +1,14 @@
 .nav-wrapper {
   background-color: white;
   box-shadow: var(--shadow-elevation-medium);
+  // position: fixed;
 
   .nav-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 80px;
+    // width: 97vw;
     margin: 0 1vw;
 
     .title {

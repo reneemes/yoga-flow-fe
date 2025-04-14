@@ -1,0 +1,38 @@
+.pose-details-view {
+  // font-family: "Lato", sans-serif;
+  // .material-icons {
+  //   height: 100px;
+  // }
+
+  .pose-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 5vw;
+
+    .pose-name {
+      font-size: 3rem;
+      margin: 25px 0 0 0;
+    }
+
+    .pose-img {
+      height: 40vh;
+      width: 40vw;
+      min-width: 300px;
+      margin: 25px 0;
+    }
+
+    .sanskrit-name {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .name-translation,
+    .description {
+      margin: 5px;
+      font-size: 1.5rem;
+    }
+  }
+
+
+}

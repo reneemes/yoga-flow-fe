@@ -9,7 +9,9 @@
       <div>
         <label for="password">Password</label>
         <input type="password" id="password" name="password" [(ngModel)]="user.password" required />
-        <input type="checkbox" (click)="togglePassword()">Show Password
+        <div class="show-password">
+          <input type="checkbox" (click)="togglePassword()">Show Password
+        </div>
       </div>
       <div>
         <button type="submit" [disabled]="loginForm.invalid || !validateEmail()">Login</button>
