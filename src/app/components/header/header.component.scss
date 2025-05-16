@@ -1,7 +1,11 @@
 .nav-wrapper {
   background-color: white;
   box-shadow: var(--shadow-elevation-medium);
-  // position: fixed;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  // height: 80px;
+  top: 0;
 
   .nav-bar {
     display: flex;
