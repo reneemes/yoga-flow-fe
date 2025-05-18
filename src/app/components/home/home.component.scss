@@ -7,9 +7,18 @@
   width: 100%;
   margin-top: 80px;
   
-  h2 {
-    font-size: 2.75rem;
+  .top-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80vw;
     color: var(--dark-green);
+    font-size: 1.5rem;
+    
+    h2 {
+      font-size: 2.75rem;
+      margin-bottom: 0;
+    }
   }
 
   .welcome-img {

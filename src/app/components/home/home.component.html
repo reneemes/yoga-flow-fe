@@ -2,7 +2,10 @@
   <div class="top-elements">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600" rel="stylesheet">
     @if (userInfo) {
-      <h2>Namaste, {{ userInfo.user.data.attributes.name }}</h2>
+      <div class="top-text">
+        <h2>Namaste</h2>
+        <p class="welcome-text">Welcome, {{ userInfo.user.data.attributes.name }}.</p>
+      </div>
     }
     
     <!-- <section class="daily-streak">
@@ -15,7 +18,8 @@
 
   <div class="nav-buttons">
     <a href="/poses">Explore Poses</a>
-    <a href="/routines">View Saved Routines</a>
-    <a href="/new-routine">Create A New Routine</a>
+    <a href="/routines">View Routines</a>
+    <!-- <a href="/new-routine">Create A New Routine</a> -->
+    <a>Create A New Routine</a>
   </div>
 </div>

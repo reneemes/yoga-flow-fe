@@ -12,6 +12,12 @@ export const routes: Routes = [
       return import('./login/login.component').then(m => m.LoginComponent)
     }
   },
+  // { path: '',
+  //   pathMatch: 'full',
+  //   loadComponent: () => {
+  //     return import('./components/home/home.component').then(m => m.HomeComponent)
+  //   }
+  // },
   { path: 'home', component: HomeComponent},
   { path: 'poses', component: PosesComponent},
   { path: 'poses/:id', component: PoseDetailsComponent}
