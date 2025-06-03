@@ -8,9 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, CommonModule],
   template: `
-    @if (currentUrl !== '/') {
-      <app-header></app-header>
-    }
+    <app-header></app-header>
     <router-outlet />
     `,
     styles: []

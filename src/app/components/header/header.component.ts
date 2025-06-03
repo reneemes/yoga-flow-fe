@@ -7,16 +7,14 @@ import { Router } from '@angular/router';
   template: `
     <div class="nav-wrapper">
       <nav class="nav-bar">
-        <a href="/home" class="title">YogaFlow</a>
+        <a href="/" class="title">YogaFlow</a>
         <div class="buttons">
           <a href="/poses" class="poses-but">Poses</a>
           <a href="/routines" class="routine-but">Routines</a>
-          <i class="material-icons">account_circle</i>
         </div>
         <div class="mobile-buttons">
           <a href="/poses" class="poses-but">Poses</a>
           <a href="/routines" class="routine-but">Routines</a>
-          <i class="material-icons">account_circle</i>
         </div>
       </nav>
     </div>
@@ -26,7 +24,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   constructor(private router: Router) {}
 
-  handleAccountNav() {
-    this.router.navigate(['account']);
-  }
+  // handleAccountNav() {
+  //   this.router.navigate(['account']);
+  // }
 }

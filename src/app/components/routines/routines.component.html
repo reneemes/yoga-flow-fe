@@ -16,6 +16,18 @@
       <!-- </div>
     }
   </section> -->
+  <!-- @if (!routineData) {
+    <p>Loading...</p>
+  }
+  <section class="routines-container">
+    @for (routine of routineData; track routine.id) {
+      <div class="routine">
+        <h3>{{ routine.attributes.name }}</h3>
+        <p>{{ routine.attributes.description }}</p>
+        <p>Difficulty: {{ routine.attributes.difficulty }}</p>
+      </div>
+    }
+  </section> -->
 
   @if (routineData) {
     <section class="routines-container">

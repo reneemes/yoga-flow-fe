@@ -1,6 +1,5 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-// import { UserService } from '../../services/user/user.service';
-import { IdService } from '../../services/id/id.service';
+import { Component, ElementRef } from '@angular/core';
+import { PosesFetchService } from '../../services/poses-fetch/poses-fetch.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -26,13 +25,9 @@ interface Pose {
 export class PosesComponent {
   constructor(
     private router: Router,
-    // private userService: UserService,
-    private idService: IdService,
+    private posesFetchService: PosesFetchService,
     private elementRef: ElementRef
-  ) {
-    // this.data.currentId.subscribe(id => this.id = id)
-    // console.log(this.data.currentId, "<>currentId")
-  };
+  ) {};
   
   data: any = null;
   allData: any = null;
@@ -40,35 +35,21 @@ export class PosesComponent {
   filterMenuOpen = false;
   id: string | null = null;
 
-  ngOnInit() {
+  async ngOnInit() {
     if (this.data === null) {
-      this.fetchPoses();
-    }
-  };
-
-  async fetchPoses() {
-    const url = "http://localhost:3000/api/v1/poses";
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
+      try {
+        const response = await this.posesFetchService.fetchPoses();
+        this.data = response;
+        this.allData = response;
+      } catch (error) {
+        console.error('Error fetching poses:', error);
       }
-    });
-
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    };
-
-    const json = await response.json();
-    console.log(json, "POSES");
-    this.data = json;
-    this.allData = json;
+    }
   };
 
   searchPoses(event: any) {
     if (this.poseSearch.trim() === "") {
-      this.data = this.allData; // Reset to original data when search is empty
+      this.data = this.allData;
     } else {
       this.data = this.allData.filter((pose: any) => {
         const poseName = pose.data.attributes.name.toLowerCase();
