@@ -1,0 +1,29 @@
+.routines-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+
+  font-family: "Lato", sans-serif;
+  h2 {
+    font-size: 2.5rem;
+    color: var(--dark-green);
+  }
+
+  .routines-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 75vw;
+    
+    .routine {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid orange;
+      height: 300px;
+      width: 300px;
+      padding: 5px;
+    }
+  }
+}
