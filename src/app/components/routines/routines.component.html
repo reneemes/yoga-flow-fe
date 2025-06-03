@@ -1,34 +1,5 @@
 <div class="routines-view">
   <h2>Routines</h2>
-
-  <!-- @if (!routineData) {
-    <p>Loading...</p>
-  } -->
-
-  <!-- <section class="routines-container">
-    @for (routine of routineData; track routine.data.id) { -->
-      <!-- <div class="routine" (click)="handleRoutineClick(routine.data.id)"> -->
-      <!-- <div class="routine"> -->
-        <!-- <img src="{{routine.data.attributes.image_url}}" alt="{{routine.data.attributes.name}}"/> -->
-        <!-- <h3>{{routine.data.attributes.name}}</h3>
-        <h3>{{routine.data.attributes.name}}</h3> -->
-        <!-- <p>{{routine.data.attributes.sanskrit_name}}</p> -->
-      <!-- </div>
-    }
-  </section> -->
-  <!-- @if (!routineData) {
-    <p>Loading...</p>
-  }
-  <section class="routines-container">
-    @for (routine of routineData; track routine.id) {
-      <div class="routine">
-        <h3>{{ routine.attributes.name }}</h3>
-        <p>{{ routine.attributes.description }}</p>
-        <p>Difficulty: {{ routine.attributes.difficulty }}</p>
-      </div>
-    }
-  </section> -->
-
   @if (routineData) {
     <section class="routines-container">
       @for (routine of routineData; track routine.id) {
@@ -42,6 +13,5 @@
   } @else {
     <p>Loading...</p>
   }
-  
 </div>
 

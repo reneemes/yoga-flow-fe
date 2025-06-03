@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-// import { UserService } from '../../services/poses-fetch/user.service';
 
 interface User {
   token: string,
@@ -26,11 +25,8 @@ export class HomeComponent {
   constructor() {}
   
   ngOnInit() {
-    // this.userInfo = this.userService.getUserInfo();
-    // console.log(this.userInfo, "userInfo")
     if (!this.userInfo) {
       console.log("No user data found. Redirecting to login...");
-      // Handle no user data (optional: redirect to login)
     }
   }
 }

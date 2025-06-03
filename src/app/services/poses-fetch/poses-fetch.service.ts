@@ -24,8 +24,6 @@ export class PosesFetchService {
 
     const json = await response.json();
     console.log(json, "POSES");
-    // this.data = json;
-    // this.allData = json;
     return json;
   }
 
@@ -45,8 +43,6 @@ export class PosesFetchService {
     };
 
     const json = await response.json();
-    // console.log(json, "POSE");
-    // this.data = json;
     return json;
   }
 }
