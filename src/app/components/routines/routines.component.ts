@@ -1,29 +1,27 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user/user.service';
+import { CommonModule } from '@angular/common';
 
-// interface Pose {
-//   data: {
-//     id: number,
-//     type: string,
-//     attributes: {
-//       name: string,
-//       sanskrit_name: string,
-//       image_url: string
-//     }
-//   }
-// }
-// interface Routine {
-//   data: {
-//     id: number,
-//     type: string,
-//     attributes: {
-//       name: string,
-//       description: string,
-//       difficulty: string,
-//       routine_poses: Pose[]
-//     }
-//   }
-// }
+export interface Routine {
+  id: string;
+  type: string;
+  attributes: {
+    name: string;
+    description: string;
+    difficulty: string;
+    routine_poses: Pose[];
+  };
+}
+
+export interface Pose {
+  pose_id: number;
+  name: string;
+  sanskrit_name: string;
+  translation_name: string;
+  description: string;
+  pose_benefits: string;
+  image_url: string;
+}
 interface User {
   token: string,
   user: {
@@ -39,7 +37,7 @@ interface User {
 
 @Component({
   selector: 'app-routines',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './routines.component.html',
   styleUrl: './routines.component.scss'
 })
@@ -48,7 +46,7 @@ export class RoutinesComponent {
     private userService: UserService
   ) {};
 
-  data: any = null;
+  routineData: Routine[] | null = null;
   // id: string | null = null;
   userInfo: User | null = null;
 
@@ -58,6 +56,11 @@ export class RoutinesComponent {
       console.log("No user data found. Redirecting to login...");
       // Handle no user data (optional: redirect to login)
     }
+    console.log("TOKEN", this.userInfo?.token)
+    if (this.routineData === null) {
+      this.fetchRoutines();
+    }
+    console.log("Fetched Data: ", this.routineData)
   }
 
   async fetchRoutines() {
@@ -82,7 +85,9 @@ export class RoutinesComponent {
 
     const json = await response.json();
     console.log(json, "ROUTINES");
-    this.data = json;
+    this.routineData = json.data;
     // this.allData = json;
+    console.log("Fetched Data: ", this.routineData)
+
   };
 }
