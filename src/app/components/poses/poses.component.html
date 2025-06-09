@@ -23,7 +23,7 @@
   </section>
   @if (!data) {
     <p>Loading...</p>
-  }
+  } @else {
     <section class="poses-container">
       @for (pose of data; track pose.data.id) {
         <div class="pose" (click)="handlePoseClick(pose.data.id)">
@@ -33,4 +33,5 @@
         </div>
       }
     </section>
+  }
 </div>

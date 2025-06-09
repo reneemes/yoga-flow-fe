@@ -1,5 +1,26 @@
 <div class="routines-view">
   <h2>Routines</h2>
+  <section class="search-and-filter">
+    <i class="material-icons" alt="Search Icon">search</i>
+    <input type="search"
+      id="pose-search"
+      placeholder="Search..."
+      [(ngModel)]="routineSearch"
+      (input)="searchRoutines($event)"
+    >
+    <i id="filter-button" class="material-icons" alt="Filter Icon" (click)="toggleFilterMenu()">filter_list</i>  
+    <div class="filter-menu" [ngClass]="{ 'open': filterMenuOpen }">
+      <label>
+        <input className="filterInput" type="checkbox"> Beginner
+      </label>
+      <label>
+        <input className="filterInput" type="checkbox"> Intermediate
+      </label>
+      <label>
+        <input className="filterInput" type="checkbox"> Advanced
+      </label>
+    </div>
+  </section>
   @if (routineData) {
     <section class="routines-container">
       @for (routine of routineData; track routine.id) {

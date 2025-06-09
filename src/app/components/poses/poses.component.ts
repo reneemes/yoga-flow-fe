@@ -1,20 +1,20 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { PosesFetchService } from '../../services/poses-fetch/poses-fetch.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-interface Pose {
-  data: {
-    id: number,
-    type: string,
-    attributes: {
-      name: string,
-      sanskrit_name: string,
-      image_url: string
-    }
-  }
-}
+// interface Pose {
+//   data: {
+//     id: number,
+//     type: string,
+//     attributes: {
+//       name: string,
+//       sanskrit_name: string,
+//       image_url: string
+//     }
+//   }
+// }
 
 @Component({
   selector: 'app-poses',
@@ -26,7 +26,6 @@ export class PosesComponent {
   constructor(
     private router: Router,
     private posesFetchService: PosesFetchService,
-    private elementRef: ElementRef
   ) {};
   
   data: any = null;
