@@ -6,7 +6,7 @@
       id="pose-search"
       placeholder="Search..."
       [(ngModel)]="poseSearch"
-      (input)="searchPoses($event)"
+      (ngModelChange)="searchPoses($event)"
     >
     <i id="filter-button" class="material-icons" alt="Filter Icon" (click)="toggleFilterMenu()">filter_list</i>  
     <div class="filter-menu" [ngClass]="{ 'open': filterMenuOpen }">
@@ -25,6 +25,7 @@
     <p>Loading...</p>
   } @else {
     <section class="poses-container">
+      <!-- track is  -->
       @for (pose of data; track pose.data.id) {
         <div class="pose" (click)="handlePoseClick(pose.data.id)">
           <img src="{{pose.data.attributes.image_url}}" alt="{{pose.data.attributes.name}}"/>
