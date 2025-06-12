@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IdService } from './id.service';
+import { PosesFetchService } from './poses-fetch.service';
 
-describe('IdService', () => {
-  let service: IdService;
+describe('PosesFetchService', () => {
+  let service: PosesFetchService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(IdService);
+    service = TestBed.inject(PosesFetchService);
   });
 
   it('should be created', () => {

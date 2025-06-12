@@ -1,21 +1,12 @@
 <div class="home">
   <div class="top-elements">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:600" rel="stylesheet">
-    @if (userInfo) {
-      <div class="top-text">
-        <h2>Namaste</h2>
-        <p class="welcome-text">Welcome, {{ userInfo.user.data.attributes.name }}.</p>
-      </div>
-    }
-    
-    <!-- <section class="daily-streak">
-      <h2>20 Days of Practice!</h2>
-      <button>Log Practice</button>
-    </section> -->
-    <!-- <img src="/assets/meditation.jpg" alt="Meditation Spot" class="welcome-img"/> -->
+    <div class="top-text">
+      <h2>Namaste</h2>
+      <p class="welcome-text">Welcome to YogaFlow. <br/>
+        Take a moment for yourself—explore individual yoga poses or ease into a guided routine.</p>
+    </div>
     <img src="/assets/waterfall.jpg" alt="Meditation Spot" class="welcome-img"/>
   </div>
-
   <div class="nav-buttons">
     <a href="/poses">Explore Poses</a>
     <a href="/routines">View Routines</a>

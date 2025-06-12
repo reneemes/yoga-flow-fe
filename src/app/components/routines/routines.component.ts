@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../services/user/user.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RoutinesFetchService } from '../../services/routines-fetch/routines-fetch.service';
 
 export interface Routine {
   id: string;
@@ -12,7 +13,6 @@ export interface Routine {
     routine_poses: Pose[];
   };
 }
-
 export interface Pose {
   pose_id: number;
   name: string;
@@ -22,72 +22,57 @@ export interface Pose {
   pose_benefits: string;
   image_url: string;
 }
-interface User {
-  token: string,
-  user: {
-    data: {
-      id: number,
-      attributes: {
-        name: string,
-        email: string
-      }
-    }
-  }
-}
 
 @Component({
   selector: 'app-routines',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './routines.component.html',
   styleUrl: './routines.component.scss'
 })
 export class RoutinesComponent {
   constructor(
-    private userService: UserService
+    private routineFetchService: RoutinesFetchService
   ) {};
 
   routineData: Routine[] | null = null;
-  // id: string | null = null;
-  userInfo: User | null = null;
+  allRoutines: any = null;
+  routineSearch: string = "";
+  filterMenuOpen = false;
 
-  ngOnInit() {
-    this.userInfo = this.userService.getUserInfo();
-    if (!this.userInfo) {
-      console.log("No user data found. Redirecting to login...");
-      // Handle no user data (optional: redirect to login)
-    }
-    console.log("TOKEN", this.userInfo?.token)
+  async ngOnInit() {
     if (this.routineData === null) {
-      this.fetchRoutines();
+      try {
+        const response = await this.routineFetchService.fetchRoutines();
+        this.routineData = response.data;
+        this.allRoutines = response.data;
+        console.log('Routines fetched successfully:', this.routineData);
+      } catch (error) {
+        console.error('Error fetching poses:', error);
+      }
     }
-    console.log("Fetched Data: ", this.routineData)
   }
 
-  async fetchRoutines() {
-    if (!this.userInfo) {
-      console.error('User is not authenticated.');
-      return;
+  searchRoutines(event: any) {
+    if (this.routineSearch.trim() === "") {
+      this.routineData = this.allRoutines;
+    } else {
+      this.routineData = this.allRoutines.filter((routine: any) => {
+        const routineName = routine.attributes.name.toLowerCase();
+        const difficulty = routine.attributes.difficulty.toLowerCase();
+
+        return (
+          routineName.includes(this.routineSearch.toLowerCase()) ||
+          difficulty.includes(this.routineSearch.toLowerCase())
+        )
+      });
     }
+  }
 
-    const url = "http://localhost:3000/api/v1/routines";
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": this.userInfo.token
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    };
-
-    const json = await response.json();
-    console.log(json, "ROUTINES");
-    this.routineData = json.data;
-    // this.allData = json;
-    console.log("Fetched Data: ", this.routineData)
-
+  toggleFilterMenu() {
+    this.filterMenuOpen = !this.filterMenuOpen;
   };
+
+  // handleRoutineClick(id: number) {
+  //   this.router.navigate([`poses/${id}`]);
+  // };
 }

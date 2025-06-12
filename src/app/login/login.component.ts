@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../services/user/user.service';
 
 interface User {
   email: string,
@@ -15,7 +14,7 @@ interface User {
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router) {}
   title = "Login";
 
   // input = document.getElementById("myInput");
@@ -65,7 +64,7 @@ export class LoginComponent {
         const json = await response.json();
         console.log(json);
         // Save user info using UserService
-        this.userService.setUserInfo(json);
+        // this.userService.setUserInfo(json);
         // Navigate to home after successful login
         this.router.navigate(['home']);
       } catch (error: any) {
