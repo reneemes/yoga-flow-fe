@@ -8,7 +8,7 @@
       [(ngModel)]="poseSearch"
       (ngModelChange)="searchPoses($event)"
     >
-    <i id="filter-button" class="material-icons" alt="Filter Icon" (click)="toggleFilterMenu()">filter_list</i>  
+    <!-- <i id="filter-button" class="material-icons" alt="Filter Icon" (click)="toggleFilterMenu()">filter_list</i>  
     <div class="filter-menu" [ngClass]="{ 'open': filterMenuOpen }">
       <label>
         <input className="filterInput" type="checkbox"> Beginner
@@ -19,7 +19,7 @@
       <label>
         <input className="filterInput" type="checkbox"> Advanced
       </label>
-    </div>
+    </div> -->
   </section>
   @if (!data) {
     <p>Loading...</p>
