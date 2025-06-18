@@ -1,59 +1,70 @@
-# YogaFlowFe
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.7.
+<h1 align="center">
+  YogaFlow
+  <br>
+</h1>
 
-## Development server
+<h4 align="center">YogaFlow is a web application where users can explore, create, and track personalized yoga routines. The app combines the benefits of a guided yoga practice with flexibility, offering curated routines for all levels.</h4>
 
-To start a local development server, run:
+<p align="center">
+  <a href="#key-features">Key Features</a> •
+  <a href="#how-to-use">How To Use</a> •
+  <a href="#tech-stack">Tech Stack</a> •
+  <a href="#credits">Credits</a>
+</p>
 
-```bash
-ng serve
-```
+![screenshot](/public/assets/yogaflow-home.png)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Key Features
 
-## Code scaffolding
+* Explore Yoga Poses
+  - Browse, search, and filter a wide variety of yoga poses. Click on any pose to view detailed information and benefits for each posture.
+* Discover Yoga Routines
+  - Easily explore and search through curated yoga routines. Select a routine to start your guided practice.
+* Create Your Own Routine
+  - Personalize your practice by building custom routines. (Feature coming soon!)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## How To Use
 
 ```bash
-ng build
+# Clone this repository
+$ git clone git@github.com:reneemes/yoga-flow-fe.git
+
+# Go into the repository
+$ cd yoga-flow-fe
+
+# Install dependencies
+$ npm install
+
+# Run the app
+$ npm start
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
 ```bash
-ng test
+# Clone the backend repository
+$ git clone git@github.com:reneemes/yoga_flow_be.git
+
+# Go into the repository
+$ cd yoga_flow_be
+
+# Install dependencies
+$ bundle install
+$ rails db:{drop, create, migrate, seed}
+
+# Run the app
+$ rails server
 ```
 
-## Running end-to-end tests
+## Tech Stack
 
-For end-to-end (e2e) testing, run:
+- [Angular](https://angular.dev/)
+- [Ruby on Rails](https://rubyonrails.org/)
+- [RSpec Testing](https://rspec.info/)
+- [WebMock & VCR](https://github.com/vcr/vcr)
+- [SimpleCov](https://github.com/simplecov-ruby/simplecov)
+<!-- - [Ruby](https://www.ruby-lang.org/en/documentation/) -->
 
-```bash
-ng e2e
-```
+## Credits
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+[External Yoga API](https://github.com/alexcumplido/yoga-api?tab=readme-ov-file)
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
