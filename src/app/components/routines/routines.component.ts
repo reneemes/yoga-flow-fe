@@ -72,6 +72,46 @@ export class RoutinesComponent {
     this.filterMenuOpen = !this.filterMenuOpen;
   };
 
+  // two-way data binding for the filter options
+  // using ngModel in the HTML allows us to bind the checkbox state to isChecked
+  // so we can easily check which difficulties are selected
+  filterOptions = [
+    { difficulty: 'Beginner', isChecked: false },
+    { difficulty: 'Intermediate', isChecked: false },
+    { difficulty: 'Advanced', isChecked: false }
+  ]
+
+  filterByDifficulty() {
+    // return early if routineData is null
+    if (this.routineData === null) return;
+
+    // creates an array of selected difficulties based on the filterOptions
+    const selectedDifficulties = this.filterOptions
+      .filter(option => option.isChecked)
+      .map(option => option.difficulty.toLowerCase());
+
+      console.log('Selected difficulties:', selectedDifficulties);
+
+    // if no difficulties are selected, show all routines
+    if (selectedDifficulties.length === 0) {
+      this.routineData = this.allRoutines;
+      console.log('No filters applied, showing all routines.');
+    } else {
+      // else look for routines to fin the ones that match the selected difficulties
+      this.routineData = this.allRoutines.filter((routine: any) => {
+        console.log('Checking routine:', routine);
+        // get the difficulty of each individual routine and convert it to lowercase
+        const difficulty = routine.attributes.difficulty.toLowerCase();
+        console.log('Routine difficulty:', difficulty);
+        console.log('selectedDifficulties:', selectedDifficulties);
+        // return routines that match the selected difficulties
+        return (
+          selectedDifficulties.includes(difficulty)
+        )
+      })
+    }
+  }
+
   // handleRoutineClick(id: number) {
   //   this.router.navigate([`poses/${id}`]);
   // };
