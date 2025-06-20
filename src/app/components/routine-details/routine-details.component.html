@@ -4,11 +4,11 @@
   } @else {
     <section class="routine-details">
       <h1 class="routine-name">{{routineData.name}}</h1>
-      <p>{{routineData.description}}</p>
-      <p>Difficulty level: {{routineData.difficulty}}</p>
+      <p class="routine-description">{{routineData.description}}</p>
+      <p class="routine-difficulty">Difficulty level: {{routineData.difficulty}}</p>
 
       <section class="pose-layout">
-      @for (pose of routineData.routine_poses; track pose.id) {
+       @for (pose of routineData.routine_poses; track pose.id) {
           <div class="pose-box">
             <h3 class="pose-name">{{pose.name}}</h3>
             <img class="pose-img" src="{{pose.image_url}}" alt="{{pose.name}}"/>
