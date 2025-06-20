@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RoutinesFetchService } from '../../services/routines-fetch/routines-fetch.service';
 
 export interface Routine {
@@ -31,6 +32,7 @@ export interface Pose {
 })
 export class RoutinesComponent {
   constructor(
+    private router: Router,
     private routineFetchService: RoutinesFetchService
   ) {};
 
@@ -112,7 +114,7 @@ export class RoutinesComponent {
     }
   }
 
-  // handleRoutineClick(id: number) {
-  //   this.router.navigate([`poses/${id}`]);
-  // };
+  handleRoutineClick(id: number) {
+    this.router.navigate([`poses/${id}`]);
+  };
 }

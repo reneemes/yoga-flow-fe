@@ -62,9 +62,9 @@ export class PosesComponent {
     }
   }
 
-  toggleFilterMenu() {
-    this.filterMenuOpen = !this.filterMenuOpen;
-  };
+  // toggleFilterMenu() {
+  //   this.filterMenuOpen = !this.filterMenuOpen;
+  // };
 
   handlePoseClick(id: number) {
     this.router.navigate([`poses/${id}`]);
