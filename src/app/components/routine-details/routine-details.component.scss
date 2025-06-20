@@ -1,8 +1,28 @@
 .routine-details-view {
-  margin-top: 100px;
-}
-// REMOVE THIS LATER ^
+  margin-top: 80px;
+  
+  .routine-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-.pose-img {
-  height: 200px;
+    .pose-layout {
+      display: grid;
+
+      .routine-name {
+        font-size: 3rem;
+        margin: 25px 0 0 0;
+      }
+      
+      .pose-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+
+  .pose-img {
+    height: 200px;
+  }
 }
