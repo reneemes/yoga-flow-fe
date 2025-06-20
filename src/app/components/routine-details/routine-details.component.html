@@ -1,1 +1,18 @@
-<p>routine-details works!</p>
+<div class="routine-details-view">
+  @if (!routineData) {
+    <p>Loading...</p>
+  } @else {
+    <section class="routine-details">
+      <h1>{{routineData.name}}</h1>
+      <p>{{routineData.description}}</p>
+      <p>Difficulty level: {{routineData.difficulty}}</p>
+
+      @for (pose of routineData.routine_poses; track pose.id) {
+        <div>
+          <h3 class="pose-name">{{pose.name}}</h3>
+          <img class="pose-img" src="{{pose.image_url}}" alt="{{pose.name}}"/>
+        </div>
+      }
+    </section>
+  }
+</div>

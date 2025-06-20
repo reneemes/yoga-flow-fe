@@ -19,7 +19,6 @@
           (change)="filterByDifficulty()"
         >
         Beginner
-        <!-- {{ filterOptions[0] | json}} -->
       </label>
       <label>
         <input
@@ -46,7 +45,7 @@
   @if (routineData) {
     <section class="routines-container">
       @for (routine of routineData; track routine.id) {
-        <div class="routine">
+        <div class="routine" (click)="handleRoutineClick(routine.id)">
           <h3>{{ routine.attributes.name }}</h3>
           <p>{{ routine.attributes.description }}</p>
           <p>Difficulty: {{ routine.attributes.difficulty }}</p>

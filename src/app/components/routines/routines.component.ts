@@ -114,7 +114,7 @@ export class RoutinesComponent {
     }
   }
 
-  handleRoutineClick(id: number) {
-    this.router.navigate([`poses/${id}`]);
+  handleRoutineClick(id: string) {
+    this.router.navigate([`routines/${id}`]);
   };
 }
