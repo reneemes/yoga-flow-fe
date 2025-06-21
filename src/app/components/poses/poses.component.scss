@@ -34,38 +34,6 @@
     position: relative;
     display: inline-block;
   }
-  
-  // #filter-button {
-  //   cursor: pointer;
-  // }
-  
-  /* Hide menu by default */
-  // .filter-menu {
-  //   display: none;
-  //   min-width: 160px;
-  //   height: 3vh;
-  //   padding: 10px;
-  //   z-index: 1;
-   
-  //   label {
-  //     display: flex;
-  //     align-items: center;
-  //     justify-content: space-between;
-  //     padding: 5px 0;
-  //     margin: 5px;
-  //   }
-
-  //   input {
-  //     margin: 3px;
-  //     width: 25px;
-  //     height: 20px;
-  //   }
-  // }
-  /* Show menu when open */
-//   .filter-menu.open {
-//     display: flex;
-//     align-items: center;
-//   }
 }
 
 .poses-container {
@@ -99,7 +67,6 @@
       margin: 5px;
     }
   }
-
 
   .pose:hover {
     transform: scale(1.05);

@@ -38,7 +38,6 @@
       cursor: pointer;
     }
     
-    /* Hide menu by default */
     .filter-menu {
       display: none;
       min-width: 160px;
@@ -60,7 +59,7 @@
         height: 20px;
       }
     }
-    /* Show menu when open */
+
     .filter-menu.open {
       display: flex;
       align-items: center;

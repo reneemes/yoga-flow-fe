@@ -4,18 +4,6 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-// interface Pose {
-//   data: {
-//     id: number,
-//     type: string,
-//     attributes: {
-//       name: string,
-//       sanskrit_name: string,
-//       image_url: string
-//     }
-//   }
-// }
-
 @Component({
   selector: 'app-poses',
   imports: [FormsModule, CommonModule],
@@ -61,10 +49,6 @@ export class PosesComponent {
       });
     }
   }
-
-  // toggleFilterMenu() {
-  //   this.filterMenuOpen = !this.filterMenuOpen;
-  // };
 
   handlePoseClick(id: number) {
     this.router.navigate([`poses/${id}`]);

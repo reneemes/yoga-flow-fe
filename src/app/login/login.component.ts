@@ -17,17 +17,6 @@ export class LoginComponent {
   constructor(private router: Router) {}
   title = "Login";
 
-  // input = document.getElementById("myInput");
-  // text = document.getElementById("text");
-  // input.addEventListener("keyup", function(event) {
-
-  // if (event.getModifierState("CapsLock")) {
-  //     this.text.style.display = "block";
-  //   } else {
-  //     this.text.style.display = "none"
-  //   }
-  // });
-
   user: User = {
     email: '',
     password: ''
@@ -63,9 +52,6 @@ export class LoginComponent {
 
         const json = await response.json();
         console.log(json);
-        // Save user info using UserService
-        // this.userService.setUserInfo(json);
-        // Navigate to home after successful login
         this.router.navigate(['home']);
       } catch (error: any) {
         console.error(error.message);

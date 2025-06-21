@@ -8,24 +8,13 @@
       [(ngModel)]="poseSearch"
       (ngModelChange)="searchPoses($event)"
     >
-    <!-- <i id="filter-button" class="material-icons" alt="Filter Icon" (click)="toggleFilterMenu()">filter_list</i>  
-    <div class="filter-menu" [ngClass]="{ 'open': filterMenuOpen }">
-      <label>
-        <input className="filterInput" type="checkbox"> Beginner
-      </label>
-      <label>
-        <input className="filterInput" type="checkbox"> Intermediate
-      </label>
-      <label>
-        <input className="filterInput" type="checkbox"> Advanced
-      </label>
-    </div> -->
   </section>
   @if (!data) {
     <p>Loading...</p>
   } @else {
     <section class="poses-container">
-      <!-- track is  -->
+      <!-- track is used to avoid re-rendering unchanged items -->
+      <!-- used to improve performance if one is created, deleted, or reordered -->
       @for (pose of data; track pose.data.id) {
         <div class="pose" (click)="handlePoseClick(pose.data.id)">
           <img src="{{pose.data.attributes.image_url}}" alt="{{pose.data.attributes.name}}"/>

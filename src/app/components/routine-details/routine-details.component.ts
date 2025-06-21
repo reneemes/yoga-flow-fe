@@ -30,6 +30,4 @@ export class RoutineDetailsComponent {
     }
     console.log(this.routineData)
   };
-
-
 }
