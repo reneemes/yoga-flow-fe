@@ -1,0 +1,36 @@
+.routine-details-view {
+  margin-top: 80px;
+  margin-bottom: 50px;
+  
+  .routine-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .pose-layout {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .routine-name {
+        font-size: 3rem;
+        margin: 25px 0 0 0;
+      }
+      
+      .pose-box {
+        border: 1px solid gainsboro;
+        background-color: whitesmoke;
+        display: grid;
+        justify-content: center;
+        justify-items: center;
+        width: 300px;
+        margin: 5px;
+        padding: 8px;
+      }
+    }
+  }
+
+  .pose-img {
+    height: 200px;
+  }
+}

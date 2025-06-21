@@ -1,18 +1,18 @@
 // import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { RoutinesComponent } from './routines.component';
+// import { RoutineDetailsComponent } from './routine-details.component';
 
-// describe('RoutinesComponent', () => {
-//   let component: RoutinesComponent;
-//   let fixture: ComponentFixture<RoutinesComponent>;
+// describe('RoutineDetailsComponent', () => {
+//   let component: RoutineDetailsComponent;
+//   let fixture: ComponentFixture<RoutineDetailsComponent>;
 
 //   beforeEach(async () => {
 //     await TestBed.configureTestingModule({
-//       imports: [RoutinesComponent]
+//       imports: [RoutineDetailsComponent]
 //     })
 //     .compileComponents();
 
-//     fixture = TestBed.createComponent(RoutinesComponent);
+//     fixture = TestBed.createComponent(RoutineDetailsComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });

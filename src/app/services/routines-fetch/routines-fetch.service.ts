@@ -23,5 +23,23 @@ export class RoutinesFetchService {
 
     const json = await response.json();
     return json;
+  };
+
+  async fetchRoutineDetails(id: number) {
+    const url = `http://localhost:3000/api/v1/routines/${id}`;
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
     };
+
+    const json = await response.json();
+    return json.data.attributes;
+  }
 }

@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { PosesComponent } from './components/poses/poses.component';
 import { PoseDetailsComponent } from './components/pose-details/pose-details.component';
 import { RoutinesComponent } from './components/routines/routines.component';
+import { RoutineDetailsComponent } from './components/routine-details/routine-details.component';
 // import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
@@ -22,6 +23,6 @@ export const routes: Routes = [
   // { path: 'home', component: HomeComponent},
   { path: 'poses', component: PosesComponent},
   { path: 'poses/:id', component: PoseDetailsComponent},
-  { path: 'routines', component: RoutinesComponent}
-  // { path: 'routines/:id', component: RoutineDetailsComponent}
+  { path: 'routines', component: RoutinesComponent},
+  { path: 'routines/:id', component: RoutineDetailsComponent}
 ];

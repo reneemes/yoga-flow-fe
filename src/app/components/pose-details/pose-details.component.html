@@ -4,10 +4,11 @@
   } @else {
     <section class="pose-details">
       <h1 class="pose-name">{{ formatName() }}</h1>
-      <img class="pose-img" src="{{data.data.attributes.image_url}}" alt="{{ formatName() }}"/>
-      <h3 class="sanskrit-name">Sanskrit: {{data.data.attributes.sanskrit_name}}</h3>
+      <p class="sanskrit-name">{{data.data.attributes.sanskrit_name}}</p>
       <p class="name-translation">{{data.data.attributes.translation_name}}</p>
-      <p class="description">{{data.data.attributes.pose_description}}</p>
+      <img class="pose-img" src="{{data.data.attributes.image_url}}" alt="{{ formatName() }}"/>
+      <p class="description"><strong>Benefits:</strong> {{data.data.attributes.pose_benefits}}</p>
+      <p class="description"><strong>Alignment:</strong> {{data.data.attributes.pose_description}}</p>
     </section>
   }
 </div>

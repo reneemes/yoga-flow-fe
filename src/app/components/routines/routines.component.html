@@ -11,20 +11,41 @@
     <i id="filter-button" class="material-icons" alt="Filter Icon" (click)="toggleFilterMenu()">filter_list</i>  
     <div class="filter-menu" [ngClass]="{ 'open': filterMenuOpen }">
       <label>
-        <input className="filterInput" type="checkbox"> Beginner
+        <input
+          className="difficulty-input"
+          id="beginner-routine"
+          type="checkbox"
+          [(ngModel)]="filterOptions[0].isChecked"
+          (change)="filterByDifficulty()"
+        >
+        Beginner
       </label>
       <label>
-        <input className="filterInput" type="checkbox"> Intermediate
+        <input
+          className="difficulty-input"
+          id="intermediate-routine"
+          type="checkbox"
+          [(ngModel)]="filterOptions[1].isChecked"
+          (change)="filterByDifficulty()"
+        >
+        Intermediate
       </label>
       <label>
-        <input className="filterInput" type="checkbox"> Advanced
+        <input
+          className="difficulty-input"
+          id="advanced-routine"
+          type="checkbox"
+          [(ngModel)]="filterOptions[2].isChecked"
+          (change)="filterByDifficulty()"
+        >
+        Advanced
       </label>
     </div>
   </section>
   @if (routineData) {
     <section class="routines-container">
       @for (routine of routineData; track routine.id) {
-        <div class="routine">
+        <div class="routine" (click)="handleRoutineClick(routine.id)">
           <h3>{{ routine.attributes.name }}</h3>
           <p>{{ routine.attributes.description }}</p>
           <p>Difficulty: {{ routine.attributes.difficulty }}</p>
