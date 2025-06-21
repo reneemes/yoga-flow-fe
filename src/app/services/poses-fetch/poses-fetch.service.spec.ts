@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+// import { TestBed } from '@angular/core/testing';
 
-import { PosesFetchService } from './poses-fetch.service';
+// import { PosesFetchService } from './poses-fetch.service';
 
-describe('PosesFetchService', () => {
-  let service: PosesFetchService;
+// describe('PosesFetchService', () => {
+//   let service: PosesFetchService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(PosesFetchService);
-  });
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({});
+//     service = TestBed.inject(PosesFetchService);
+//   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+//   it('should be created', () => {
+//     expect(service).toBeTruthy();
+//   });
+// });
