@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterLink],
   template: `
     <div class="nav-wrapper">
       <nav class="nav-bar">
-        <a href="/" class="title">YogaFlow</a>
+        <a routerLink="/" class="title">YogaFlow</a>
         <div class="buttons">
-          <a href="/poses" class="poses-but">Poses</a>
-          <a href="/routines" class="routine-but">Routines</a>
+          <a routerLink="/poses" class="poses-button">Poses</a>
+          <a routerLink="/routines" class="routines-button">Routines</a>
         </div>
         <div class="mobile-buttons">
-          <a href="/poses" class="poses-but">Poses</a>
-          <a href="/routines" class="routine-but">Routines</a>
+          <a routerLink="/poses" class="poses-b">Poses</a>
+          <a routerLink="/routines" class="routines-b">Routines</a>
         </div>
       </nav>
     </div>
@@ -22,6 +22,6 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  constructor(private router: Router) {}
+  constructor(private routerLink: RouterLink) {}
 
 }
