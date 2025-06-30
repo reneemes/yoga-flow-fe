@@ -3,6 +3,19 @@ import { PosesFetchService } from '../../services/poses-fetch/poses-fetch.servic
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BehaviorSubject } from 'rxjs';
+
+export interface Pose {
+  data: {
+    id: number,
+    type: string,
+    attributes: {
+      name: string,
+      sanskrit_name: string,
+      image_url: string
+    }
+  }
+}
 
 @Component({
   selector: 'app-poses',
@@ -16,37 +29,39 @@ export class PosesComponent {
     private posesFetchService: PosesFetchService,
   ) {};
   
-  data: any = null;
-  allData: any = null;
-  poseSearch: string = "";
+  private posesSubject = new BehaviorSubject<Pose[] | null>(null);
+  public poses$ = this.posesSubject.asObservable();
+
+  allData: Pose[] = [];
+  poseSearch: string = '';
   filterMenuOpen = false;
-  id: string | null = null;
 
   async ngOnInit() {
-    if (this.data === null) {
-      try {
-        const response = await this.posesFetchService.fetchPoses();
-        this.data = response;
-        this.allData = response;
-      } catch (error) {
-        console.error('Error fetching poses:', error);
+    this.posesFetchService.getPoses().subscribe({
+      next: poses => {
+        this.allData = poses;
+        this.posesSubject.next(poses);
+      },
+      error: e => {
+        console.error('Error fetching poses', e);
       }
-    }
+    });
   };
 
   searchPoses(event: any) {
-    if (this.poseSearch.trim() === "") {
-      this.data = this.allData;
+    if (this.poseSearch.trim() === '') {
+      this.posesSubject.next(this.allData);
     } else {
-      this.data = this.allData.filter((pose: any) => {
+      const filtered = this.allData.filter((pose: any) => {
         const poseName = pose.data.attributes.name.toLowerCase();
         const sanskritName = pose.data.attributes.sanskrit_name.toLowerCase();
 
         return (
           poseName.includes(this.poseSearch.toLowerCase()) ||
           sanskritName.includes(this.poseSearch.toLowerCase())
-        )
+        );
       });
+      this.posesSubject.next(filtered);
     }
   }
 

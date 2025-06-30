@@ -9,13 +9,27 @@
       (ngModelChange)="searchPoses($event)"
     >
   </section>
-  @if (!data) {
-    <p>Loading...</p>
-  } @else {
+
+  <div *ngIf="poses$ | async as poses; else loading">
     <section class="poses-container">
-      <!-- track is used to avoid re-rendering unchanged items -->
-      <!-- used to improve performance if one is created, deleted, or reordered -->
-      @for (pose of data; track pose.data.id) {
+      <div *ngFor="let pose of poses" class="pose" (click)="handlePoseClick(pose.data.id)">
+        <img src="{{pose.data.attributes.image_url}}" alt="{{pose.data.attributes.name}}"/>
+        <h3>{{pose.data.attributes.name}}</h3>
+        <p>{{pose.data.attributes.sanskrit_name}}</p>
+      </div>
+    </section>
+  </div>
+  <ng-template #loading>
+    <p>Loading...</p>
+  </ng-template>
+
+  <!-- "unwrap the observable using | async as poses" -->
+   <!-- This watches the poses$ and when there is an update it gives it to you or updates -->
+  <!-- @if (poses$ | async as poses) {
+    <section class="poses-container">
+      track is used to avoid re-rendering unchanged items
+      used to improve performance if one is created, deleted, or reordered
+      @for (pose of poses; track pose.data.id) {
         <div class="pose" (click)="handlePoseClick(pose.data.id)">
           <img src="{{pose.data.attributes.image_url}}" alt="{{pose.data.attributes.name}}"/>
           <h3>{{pose.data.attributes.name}}</h3>
@@ -23,5 +37,7 @@
         </div>
       }
     </section>
-  }
+  } @else {
+    <p>Loading...</p>
+  } -->
 </div>

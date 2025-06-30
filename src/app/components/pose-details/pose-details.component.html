@@ -1,14 +1,15 @@
 <div class="pose-details-view">
-  @if (!data) {
-    <p>Loading...</p>
-  } @else {
+  <div *ngIf="pose$ | async as pose; else loading">
     <section class="pose-details">
-      <h1 class="pose-name">{{ formatName() }}</h1>
-      <p class="sanskrit-name">{{data.data.attributes.sanskrit_name}}</p>
-      <p class="name-translation">{{data.data.attributes.translation_name}}</p>
-      <img class="pose-img" src="{{data.data.attributes.image_url}}" alt="{{ formatName() }}"/>
-      <p class="description"><strong>Benefits:</strong> {{data.data.attributes.pose_benefits}}</p>
-      <p class="description"><strong>Alignment:</strong> {{data.data.attributes.pose_description}}</p>
+      <h1 class="pose-name">{{ formatName(pose.data.attributes.name) }}</h1>
+      <p class="sanskrit-name">{{pose.data.attributes.sanskrit_name}}</p>
+      <p class="name-translation">{{pose.data.attributes.translation_name}}</p>
+      <img class="pose-img" src="{{pose.data.attributes.image_url}}" alt="{{ formatName(pose.data.attributes.name) }}"/>
+      <p class="description"><strong>Benefits:</strong> {{pose.data.attributes.pose_benefits}}</p>
+      <p class="description"><strong>Alignment:</strong> {{pose.data.attributes.pose_description}}</p>
     </section>
-  }
+  </div>
+  <ng-template #loading>
+    <p>Loading...</p>
+  </ng-template>
 </div>

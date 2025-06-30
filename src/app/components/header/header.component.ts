@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [RouterModule],
   template: `
     <div class="nav-wrapper">
       <nav class="nav-bar">
@@ -22,6 +22,6 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  constructor(private routerLink: RouterLink) {}
+  constructor(private routerModule: RouterModule) {}
 
 }
