@@ -12,9 +12,9 @@
 
   <div *ngIf="poses$ | async as poses; else loading">
     <section class="poses-container">
-      <div *ngFor="let pose of poses" class="pose" (click)="handlePoseClick(pose.data.id)">
+      <div *ngFor="let pose of poses" class="pose" id="{{pose.data.id}}" (click)="handlePoseClick(pose.data.id)">
         <img src="{{pose.data.attributes.image_url}}" alt="{{pose.data.attributes.name}}"/>
-        <h3>{{pose.data.attributes.name}}</h3>
+        <h3 class="poseName">{{pose.data.attributes.name}}</h3>
         <p>{{pose.data.attributes.sanskrit_name}}</p>
       </div>
     </section>

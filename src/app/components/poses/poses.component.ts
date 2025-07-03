@@ -29,7 +29,7 @@ export class PosesComponent {
     private posesFetchService: PosesFetchService,
   ) {};
   
-  private posesSubject = new BehaviorSubject<Pose[] | null>(null);
+  private posesSubject = new BehaviorSubject<Pose[]>([]);
   public poses$ = this.posesSubject.asObservable();
 
   allData: Pose[] = [];
@@ -69,3 +69,4 @@ export class PosesComponent {
     this.router.navigate([`poses/${id}`]);
   };
 }
+342

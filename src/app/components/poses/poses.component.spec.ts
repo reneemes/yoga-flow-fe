@@ -1,19 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { PosesComponent } from './poses.component';
 import { PosesFetchService } from '../../services/poses-fetch/poses-fetch.service';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
 
 describe('PosesComponent', () => {
   let component: PosesComponent;
   let fixture: ComponentFixture<PosesComponent>;
-  let mockFetchService: jasmine.SpyObj<PosesFetchService>
-  let mockRouter: jasmine.SpyObj<Router>;
+  let routerSpy: jasmine.SpyObj<Router>;
 
-  const mockPoseData = [
+  const mockPoses = [
     {
       data: {
+        id: 2,
+        type: 'pose',
         attributes: {
           name: 'Mountain Pose',
           sanskrit_name: 'Tadasana',
@@ -23,6 +26,8 @@ describe('PosesComponent', () => {
     },
     {
       data: {
+        id: 1,
+        type: 'pose',
         attributes: {
           name: 'Downward Dog',
           sanskrit_name: 'Adho Mukha Svanasana',
@@ -30,17 +35,28 @@ describe('PosesComponent', () => {
         }
       }
     }
-  ];
+  ]
 
   beforeEach(async () => {
-    // mockFetchService = jasmine.createSpyObj('PosesFetchService', ['fetchPoses']);
-    // mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    const poseServiceSpy = jasmine.createSpyObj<PosesFetchService>(['getPoses']);
+    poseServiceSpy.getPoses.and.callFake(() => {
+      return of(mockPoses)
+    });
+    routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      imports: [PosesComponent, FormsModule, CommonModule],
+      imports: [PosesComponent],
       providers: [
-        { provide: PosesFetchService, useValue: mockFetchService },
-        { provide: Router, useValue: mockRouter }
+        {
+          provide: PosesFetchService,
+          useValue: poseServiceSpy
+        },
+        {
+          provide: Router,
+          useValue: routerSpy
+        },
+        provideHttpClient(),
+        provideHttpClientTesting()
       ]
     })
     .compileComponents();
@@ -50,22 +66,70 @@ describe('PosesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should fetch yoga poses and set them to data and allData variables', async () => {
-    // mocking the method fetchPoses and telling it what value to return
-    mockFetchService.fetchPoses.and.returnValue(Promise.resolve(mockPoseData));
-
-    fixture = TestBed.createComponent(PosesComponent);
-    component = fixture.componentInstance;
-
-    await component.ngOnInit(); // call manually before detectChanges
+  it('should create', fakeAsync(() => {
+    component.ngOnInit();
+    tick();
     fixture.detectChanges();
 
-    expect(mockFetchService.fetchPoses).toHaveBeenCalled();
-    expect(component.data).toEqual(mockPoseData);
-    expect(component.allData).toEqual(mockPoseData);
+    expect(component).toBeTruthy();
+  }));
+
+  it('should fetch yoga poses and set them to data and allData variables', fakeAsync(() => {
+    component.ngOnInit();
+    tick();
+    fixture.detectChanges();
+
+    let poseName = fixture.debugElement.query(By.css('[id="2"] h3'));
+    expect(fixture.debugElement.query(By.css('.poseName'))).toBeTruthy();
+    expect(poseName.nativeNode.textContent).toBe('Mountain Pose');
+
+    poseName = fixture.debugElement.query(By.css('[id="2"] p'));
+    expect(poseName.nativeNode.textContent).toBe('Tadasana');
+  }));
+
+  it('should return all data when search is empty', () => {
+    component.poseSearch = '';
+    component.searchPoses({ target: { value: '' } });
+
+    component.poses$.subscribe(data => {
+      expect(data).toEqual(mockPoses);
+    });
   });
+
+  it('should search and filter by English name', () => {
+    component.poseSearch = 'mountain';
+    component.searchPoses({ target: { value: 'mountain' } });
+
+    component.poses$.subscribe(data => {
+      expect(data.length).toBe(1);
+      expect(data[0].data.attributes.name).toBe('Mountain Pose');
+    });
+  });
+
+  it('should search and filter by Sanskrit name', () => {
+    component.poseSearch = 'tadasana';
+    component.searchPoses({ target: { value: 'tadasana' } });
+
+    component.poses$.subscribe(data => {
+      expect(data.length).toBe(1);
+      expect(data[0].data.attributes.sanskrit_name).toBe('Tadasana');
+    });
+  });
+
+  it('should return an empty array if no matches are found', () => {
+    component.poseSearch = 'muffin';
+    component.searchPoses({ target: { value: 'muffin' } });
+
+    component.poses$.subscribe(data => {
+      expect(data).toEqual([]);
+    });
+  });
+
+  it('should navigate to the correct pose route when clicked', () => {
+    const poseId = 1;
+    component.handlePoseClick(poseId);
+
+    expect(routerSpy.navigate).toHaveBeenCalledWith([`poses/${poseId}`]);
+  });
+
 });

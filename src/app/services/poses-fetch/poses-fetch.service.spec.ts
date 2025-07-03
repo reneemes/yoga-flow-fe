@@ -45,6 +45,7 @@ describe('PosesFetchService', () => {
         }
       }
     ]);
+    httpMock.verify();
   });
 
   it('should return details for one yoga pose', () => {
@@ -71,6 +72,7 @@ describe('PosesFetchService', () => {
         }
       }
     )
+    httpMock.verify();
   });
 
 });
