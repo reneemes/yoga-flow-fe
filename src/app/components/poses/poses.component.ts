@@ -34,7 +34,7 @@ export class PosesComponent {
 
   allData: Pose[] = [];
   poseSearch: string = '';
-  filterMenuOpen = false;
+  // filterMenuOpen = false;
 
   async ngOnInit() {
     this.posesFetchService.getPoses().subscribe({
