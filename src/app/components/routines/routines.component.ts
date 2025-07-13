@@ -3,25 +3,30 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RoutinesFetchService } from '../../services/routines-fetch/routines-fetch.service';
+import { BehaviorSubject } from 'rxjs';
 
-export interface Routine {
-  id: string;
-  type: string;
-  attributes: {
-    name: string;
-    description: string;
-    difficulty: string;
-    routine_poses: Pose[];
-  };
-}
 export interface Pose {
   pose_id: number;
   name: string;
   sanskrit_name: string;
-  translation_name: string;
-  description: string;
-  pose_benefits: string;
   image_url: string;
+  description: string;
+  translation_name: string;
+  pose_benefits: string;
+}
+export interface RoutineAttributes {
+  name: string;
+  description: string;
+  difficulty: string;
+  routine_poses: Pose[];
+}
+export interface RoutineItem {
+  id: string;
+  type: string;
+  attributes: RoutineAttributes;
+}
+export interface Routine {
+  data: RoutineItem[];
 }
 
 @Component({
@@ -36,29 +41,31 @@ export class RoutinesComponent {
     private routineFetchService: RoutinesFetchService
   ) {};
 
-  routineData: Routine[] | null = null;
-  allRoutines: any = null;
+  private routineSubject = new BehaviorSubject<Routine>({ data: [] });
+  public routines$ = this.routineSubject.asObservable();
+
+  allRoutines: Routine = { data: []};
   routineSearch: string = "";
   filterMenuOpen = false;
 
   async ngOnInit() {
-    if (this.routineData === null) {
-      try {
-        const response = await this.routineFetchService.fetchRoutines();
-        this.routineData = response.data;
-        this.allRoutines = response.data;
-        console.log('Routines fetched successfully:', this.routineData);
-      } catch (error) {
-        console.error('Error fetching poses:', error);
+    this.routineFetchService.getRoutines().subscribe({
+      next: routines => {
+        this.allRoutines = routines;
+        this.routineSubject.next(routines);
+        // console.log('Current Value <><><>', routines.data)
+      },
+      error: e => {
+        console.error('Error fetching routines', e)
       }
-    }
+    });
   }
 
   searchRoutines(event: any) {
     if (this.routineSearch.trim() === "") {
-      this.routineData = this.allRoutines;
+      this.routineSubject.next(this.allRoutines);
     } else {
-      this.routineData = this.allRoutines.filter((routine: any) => {
+      const filtered = this.allRoutines?.data.filter((routine: any) => {
         const routineName = routine.attributes.name.toLowerCase();
         const difficulty = routine.attributes.difficulty.toLowerCase();
 
@@ -67,6 +74,7 @@ export class RoutinesComponent {
           difficulty.includes(this.routineSearch.toLowerCase())
         )
       });
+      this.routineSubject.next({ data: filtered });
     }
   }
 
@@ -85,7 +93,7 @@ export class RoutinesComponent {
 
   filterByDifficulty() {
     // return early if routineData is null
-    if (this.routineData === null) return;
+    // if (this.routineData === null) return;
 
     // creates an array of selected difficulties based on the filterOptions
     const selectedDifficulties = this.filterOptions
@@ -96,11 +104,11 @@ export class RoutinesComponent {
 
     // if no difficulties are selected, show all routines
     if (selectedDifficulties.length === 0) {
-      this.routineData = this.allRoutines;
+      this.routineSubject.next(this.allRoutines);
       console.log('No filters applied, showing all routines.');
     } else {
       // else look for routines to fin the ones that match the selected difficulties
-      this.routineData = this.allRoutines.filter((routine: any) => {
+      const filtered = this.allRoutines?.data.filter((routine: any) => {
         console.log('Checking routine:', routine);
         // get the difficulty of each individual routine and convert it to lowercase
         const difficulty = routine.attributes.difficulty.toLowerCase();
@@ -111,6 +119,7 @@ export class RoutinesComponent {
           selectedDifficulties.includes(difficulty)
         )
       })
+      this.routineSubject.next({ data: filtered });
     }
   }
 
