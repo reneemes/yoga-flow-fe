@@ -29,6 +29,8 @@ export class PosesComponent {
     private posesFetchService: PosesFetchService,
   ) {};
   
+  // BehaviorSubject is not needed in this instance as there is no need for
+  // reactive updates after the initial fetch and the data is not shared across components
   private posesSubject = new BehaviorSubject<Pose[]>([]);
   public poses$ = this.posesSubject.asObservable();
 
