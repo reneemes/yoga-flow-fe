@@ -7,11 +7,11 @@ import { BehaviorSubject } from 'rxjs';
 
 export interface Pose {
   data: {
-    id: number,
-    type: string,
+    id: number;
+    type: string;
     attributes: {
-      name: string,
-      sanskrit_name: string,
+      name: string;
+      sanskrit_name: string;
       image_url: string
     }
   }
@@ -34,7 +34,6 @@ export class PosesComponent {
 
   allData: Pose[] = [];
   poseSearch: string = '';
-  // filterMenuOpen = false;
 
   async ngOnInit() {
     this.posesFetchService.getPoses().subscribe({
@@ -69,4 +68,3 @@ export class PosesComponent {
     this.router.navigate([`poses/${id}`]);
   };
 }
-342

@@ -53,6 +53,7 @@ export class LoginComponent {
 
         const json = await response.json();
         console.log(json);
+        console.log(json.token);
         this.router.navigate(['home']);
       } catch (error: any) {
         console.error(error.message);

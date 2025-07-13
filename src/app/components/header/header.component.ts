@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   template: `
     <div class="nav-wrapper">
       <nav class="nav-bar">
-        <a routerLink="/" class="title">YogaFlow</a>
+        <a routerLink="/home" class="title">YogaFlow</a>
         <div class="buttons">
           <a routerLink="/poses" class="poses-button">Poses</a>
           <a routerLink="/routines" class="routines-button">Routines</a>

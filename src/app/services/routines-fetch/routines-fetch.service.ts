@@ -40,23 +40,17 @@ export class RoutinesFetchService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // token: string = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3NTI0Mzg1NjN9.M70A5v6IYLUUJSTmp-KVRpIywbKYvI3QLvaeLem_D48';
-  // headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`)
-  // httpHeaders: HttpHeaders = new HttpHeaders({
-  //   Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3NTI0Mzg1NjN9.M70A5v6IYLUUJSTmp-KVRpIywbKYvI3QLvaeLem_D48'
-  // })
-
   getRoutines(): Observable<RoutineResponse> {
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3NTI0Mzk3NjZ9.AWmZimkWsr2hyxG8zd-jjRs0W-KosIkgw4ImTqkQGO0';
-    // const httpHeaders = new HttpHeaders({
-    //   'Authorization': `Bearer ${token}`
-    // });
+    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3NTI1MTM0MTh9.gkZTBIVUcQvGG36x-4NTqbQ4LD51RBXx76PrQlJd2HU';
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.httpClient.get<RoutineResponse>('http://localhost:3000/api/v1/routines', { headers });
   };
 
   getOneRoutine(id: number): Observable<RoutineDetails> {
-    return this.httpClient.get<RoutineDetails>(`http://localhost:3000/api/v1/routines/${id}`);
+    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3NTI1MTM0MTh9.gkZTBIVUcQvGG36x-4NTqbQ4LD51RBXx76PrQlJd2HU';
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.get<RoutineDetails>(`http://localhost:3000/api/v1/routines/${id}`, { headers });
   };
 }
