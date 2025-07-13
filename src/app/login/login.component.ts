@@ -11,7 +11,8 @@ interface User {
   selector: 'app-login',
   imports: [FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+  standalone: true
 })
 export class LoginComponent {
   constructor(private router: Router) {}
