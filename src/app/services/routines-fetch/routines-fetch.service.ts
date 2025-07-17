@@ -41,14 +41,14 @@ export class RoutinesFetchService {
   constructor(private httpClient: HttpClient) { }
 
   getRoutines(): Observable<RoutineResponse> {
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3NTI1MTM0MTh9.gkZTBIVUcQvGG36x-4NTqbQ4LD51RBXx76PrQlJd2HU';
+    const token = 'TOKEN';
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.httpClient.get<RoutineResponse>('http://localhost:3000/api/v1/routines', { headers });
   };
 
   getOneRoutine(id: number): Observable<RoutineDetails> {
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3NTI1MTM0MTh9.gkZTBIVUcQvGG36x-4NTqbQ4LD51RBXx76PrQlJd2HU';
+    const token = 'TOKEN';
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.httpClient.get<RoutineDetails>(`http://localhost:3000/api/v1/routines/${id}`, { headers });
