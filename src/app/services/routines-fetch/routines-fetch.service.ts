@@ -1,45 +1,56 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+export interface Pose {
+  pose_id: number;
+  name: string;
+  sanskrit_name: string;
+  image_url: string;
+  description: string;
+  translation_name: string;
+  pose_benefits: string;
+}
+
+export interface RoutineAttributes {
+  name: string;
+  description: string;
+  difficulty: string;
+  routine_poses: Pose[];
+}
+
+export interface RoutineItem {
+  id: string;
+  type: string;
+  attributes: RoutineAttributes;
+}
+
+export interface RoutineResponse {
+  data: RoutineItem[];
+}
+
+export interface RoutineDetails {
+  data: RoutineItem;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoutinesFetchService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  async fetchRoutines() {
-    const url = "http://localhost:3000/api/v1/routines";
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      }
-    });
+  getRoutines(): Observable<RoutineResponse> {
+    const token = 'TOKEN';
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    };
-
-    const json = await response.json();
-    return json;
+    return this.httpClient.get<RoutineResponse>('http://localhost:3000/api/v1/routines', { headers });
   };
 
-  async fetchRoutineDetails(id: number) {
-    const url = `http://localhost:3000/api/v1/routines/${id}`;
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-    });
+  getOneRoutine(id: number): Observable<RoutineDetails> {
+    const token = 'TOKEN';
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    };
-
-    const json = await response.json();
-    return json.data.attributes;
-  }
+    return this.httpClient.get<RoutineDetails>(`http://localhost:3000/api/v1/routines/${id}`, { headers });
+  };
 }

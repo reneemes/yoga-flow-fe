@@ -11,7 +11,8 @@ interface User {
   selector: 'app-login',
   imports: [FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+  standalone: true
 })
 export class LoginComponent {
   constructor(private router: Router) {}
@@ -52,6 +53,7 @@ export class LoginComponent {
 
         const json = await response.json();
         console.log(json);
+        console.log(json.token);
         this.router.navigate(['home']);
       } catch (error: any) {
         console.error(error.message);

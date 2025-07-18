@@ -1,5 +1,5 @@
 <div class="routine-details-view">
-  @if (!routineData) {
+  <!-- @if (!routineData) {
     <p>Loading...</p>
   } @else {
     <section class="routine-details">
@@ -16,5 +16,25 @@
         }
       </section>
     </section>
-  }
+  } -->
+  <div *ngIf="routineDetails$ | async as routineDetails; else loading">
+    <section class="routine-details">
+      <h1 class="routine-name">{{routineDetails.data.attributes.name}}</h1>
+      <p class="routine-description">{{routineDetails.data.attributes.description}}</p>
+      <p class="routine-difficulty">Difficulty level: {{routineDetails.data.attributes.difficulty}}</p>
+
+      <section class="pose-layout">
+       <!-- @for (pose of routineData.routine_poses; track pose.id) { -->
+          <div *ngFor="let pose of routineDetails.data.attributes.routine_poses" class="pose-box">
+            <h3 class="pose-name">{{pose.name}}</h3>
+            <img class="pose-img" src="{{pose.image_url}}" alt="{{pose.name}}"/>
+          </div>
+        <!-- } -->
+      </section>
+    </section>
+  </div>
+
+  <ng-template #loading>
+    <p>Loading...</p>
+  </ng-template>
 </div>

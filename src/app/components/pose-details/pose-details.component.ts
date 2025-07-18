@@ -6,14 +6,14 @@ import { CommonModule } from '@angular/common';
 
 export interface PoseDetails {
   data: {
-    id: number,
-    type: string,
+    id: number;
+    type: string;
     attributes: {
-      name: string,
-      sanskrit_name: string,
-      pose_description: string,
-      pose_benefits: string,
-      translation_name: string,
+      name: string;
+      sanskrit_name: string;
+      pose_description: string;
+      pose_benefits: string;
+      translation_name: string;
       image_url: string
     }
   }
@@ -34,11 +34,9 @@ export class PoseDetailsComponent {
     private posesFetchService: PosesFetchService
   ) {};
   
-  // data: any = null;
   private poseSubject = new BehaviorSubject<PoseDetails | null>(null);
   public pose$ = this.poseSubject.asObservable();
   id: number = 0;
-  // id: number | null = null;
 
   async ngOnInit() {
     // retrieves the 'id' parameter from the URL and converts it to a number

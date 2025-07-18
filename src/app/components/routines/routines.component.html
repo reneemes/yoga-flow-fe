@@ -42,7 +42,21 @@
       </label>
     </div>
   </section>
-  @if (routineData) {
+
+  <div *ngIf="routines$ | async as routines; else loading">
+    <section class="routines-container">
+      <!-- <p>{{routines.data[0] | json}}</p> -->
+      <div *ngFor="let routine of routines.data" class="routine" id="{{routine.id}}" (click)="handleRoutineClick(routine.id)">
+        <h3>{{ routine.attributes.name }}</h3>
+        <p>{{ routine.attributes.description }}</p>
+        <p>Difficulty: {{ routine.attributes.difficulty }}</p>
+      </div>
+    </section>
+  </div>
+  <ng-template #loading>
+    <p>Loading...</p>
+  </ng-template>
+  <!-- @if (routineData) {
     <section class="routines-container">
       @for (routine of routineData; track routine.id) {
         <div class="routine" (click)="handleRoutineClick(routine.id)">
@@ -54,6 +68,6 @@
     </section>
   } @else {
     <p>Loading...</p>
-  }
+  } -->
 </div>
 
