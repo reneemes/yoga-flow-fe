@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AuthState } from './auth.reducer';
 
+// Select the entire "auth" state
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
 // Used to query the store and retrieve the auth token
@@ -9,7 +10,13 @@ export const selectToken = createSelector(
   (state) => state.token
 );
 
+// Check if the user is authenticated
+// Returns true if a token exists, otherwise false
 export const selectIsAuthenticated = createSelector(
   selectAuthState,
   (state) => !!state.token
 );
+
+// Used in the component like this:
+// this.store.select(selectToken).subscribe(token => console.log(token));
+// Read only

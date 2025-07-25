@@ -3,6 +3,9 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { loginSuccess } from '../../store/auth/auth.actions';
+import { AppState } from '../../store/app.state'
+import { Store } from '@ngrx/store';
 
 interface User {
   email: string;
@@ -32,7 +35,8 @@ interface SessionResponse {
 export class LoginComponent {
   constructor(
     private router: Router,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private store: Store<AppState>,
   ) {}
 
   title = "Login";
@@ -62,7 +66,9 @@ export class LoginComponent {
 
       this.loginUser(loginData).subscribe({
         next: response => {
-          console.log('TOKEN', response.token);
+          const token = response.token;
+          console.log('TOKEN', token);
+          this.store.dispatch(loginSuccess({ token }));
           this.router.navigate(['home']);
         },
         error: e => {
