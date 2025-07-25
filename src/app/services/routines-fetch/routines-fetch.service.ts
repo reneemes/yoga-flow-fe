@@ -38,7 +38,11 @@ export interface RoutineDetails {
 })
 export class RoutinesFetchService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
+
+  // this.store.select(selectAuthToken).subscribe(token => {
+  //   // use token
+  // });
 
   getRoutines(): Observable<RoutineResponse> {
     const token = 'TOKEN';
