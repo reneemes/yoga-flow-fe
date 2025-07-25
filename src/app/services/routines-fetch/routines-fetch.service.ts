@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/app.state';
+import { selectToken } from '../../../store/auth/auth.selectors';
 
 export interface Pose {
   pose_id: number;
@@ -38,22 +41,30 @@ export interface RoutineDetails {
 })
 export class RoutinesFetchService {
 
-  constructor(private httpClient: HttpClient) {}
-
-  // this.store.select(selectAuthToken).subscribe(token => {
+  constructor(
+    private httpClient: HttpClient,
+    private store: Store<AppState>
+  ) {
+    // this.store.select(selectToken).subscribe(token => console.log(token));
+    this.store.select(selectToken).subscribe(token => {
+      this.token = token;
+    });
+  }
+  token: string | null = '';
+  // token$: Observable<string | null> = this.store.select(selectToken);
+  // token$: Observable<string | null> = of(''); // Initialize with an empty string observable
+  // this.store.select(selectToken).subscribe(token => {
   //   // use token
   // });
 
   getRoutines(): Observable<RoutineResponse> {
-    const token = 'TOKEN';
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
 
     return this.httpClient.get<RoutineResponse>('http://localhost:3000/api/v1/routines', { headers });
   };
 
   getOneRoutine(id: number): Observable<RoutineDetails> {
-    const token = 'TOKEN';
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
 
     return this.httpClient.get<RoutineDetails>(`http://localhost:3000/api/v1/routines/${id}`, { headers });
   };

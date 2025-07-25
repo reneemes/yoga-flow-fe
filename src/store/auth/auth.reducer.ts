@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 // import { AuthActions } from './auth.actions';
 import * as AuthActions from './auth.actions';
+import { initialState } from '../app.state';
 
 interface User {
   email: string;
@@ -23,9 +24,9 @@ export interface AuthState {
   token: string | null;
 }
 // The default state when the app starts -- no token
-export const initialState: AuthState = {
-  token: null
-};
+// export const initialState: AuthState = {
+//   token: null
+// };
 // Builds a reducer function by handling specific actions
 export const authReducer = createReducer(
   initialState,
