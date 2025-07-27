@@ -68,6 +68,9 @@ export class LoginComponent {
         next: response => {
           const token = response.token;
           console.log('TOKEN', token);
+          // Dispatch the loginSuccess action to tell the store
+          // the token needs to be updated
+          // then other parts of the app can use the token from state
           this.store.dispatch(loginSuccess({ token }));
           this.router.navigate(['home']);
         },
