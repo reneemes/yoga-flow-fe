@@ -5,10 +5,12 @@ import { provideHttpClientTesting, HttpTestingController } from '@angular/common
 
 describe('PosesFetchService', () => {
   let service: PosesFetchService;
+  // Defining the mock HTTP request
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      // Importing all the providers needed to mock the request
       providers: [
         PosesFetchService,
         provideHttpClient(),
@@ -74,5 +76,4 @@ describe('PosesFetchService', () => {
     )
     httpMock.verify();
   });
-
 });

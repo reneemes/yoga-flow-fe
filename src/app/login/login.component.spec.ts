@@ -54,10 +54,8 @@ describe('LoginComponent', () => {
 
     const req = httpMock.expectOne('http://localhost:3000/api/v1/sessions');
     expect(req.request.method).toBe('POST');
-    // Simulates a successful HTTP response by flushing a mock login response
-    // This triggers the subscribe() block in the submitLogin() function
     req.flush({
-      token: 'token',
+      token: 'user-token',
       user: {
         data: {
           id: 1,
@@ -70,6 +68,6 @@ describe('LoginComponent', () => {
       }
     });
 
-    expect(mockStore.dispatch).toHaveBeenCalledWith(loginSuccess({ token: 'token' }));
+    expect(mockStore.dispatch).toHaveBeenCalledWith(loginSuccess({ token: 'user-token' }));
   });
 });

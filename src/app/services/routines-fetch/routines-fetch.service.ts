@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app.state';
 import { selectToken } from '../../../store/auth/auth.selectors';
@@ -45,12 +45,14 @@ export class RoutinesFetchService {
     private httpClient: HttpClient,
     private store: Store<AppState>
   ) {
-    // this.store.select(selectToken).subscribe(token => console.log(token));
     this.store.select(selectToken).subscribe(token => {
-      this.token = token;
+      // this.token = token;
+      this.tokenSubject.next(token);
     });
   }
-  token: string | null = '';
+  // token: string | null = '';
+
+  private tokenSubject = new BehaviorSubject<string | null>('');
   // token$: Observable<string | null> = this.store.select(selectToken);
   // token$: Observable<string | null> = of(''); // Initialize with an empty string observable
   // this.store.select(selectToken).subscribe(token => {
@@ -58,13 +60,15 @@ export class RoutinesFetchService {
   // });
 
   getRoutines(): Observable<RoutineResponse> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenSubject.value}`);
 
     return this.httpClient.get<RoutineResponse>('http://localhost:3000/api/v1/routines', { headers });
   };
 
   getOneRoutine(id: number): Observable<RoutineDetails> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenSubject.value}`);
 
     return this.httpClient.get<RoutineDetails>(`http://localhost:3000/api/v1/routines/${id}`, { headers });
   };
