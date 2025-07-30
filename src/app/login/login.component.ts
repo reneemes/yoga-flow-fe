@@ -54,7 +54,8 @@ export class LoginComponent {
   }
 
   loginUser(loginData: User): Observable<SessionResponse> {
-    return this.httpClient.post<SessionResponse>('http://localhost:3000/api/v1/sessions', loginData)
+    return this.httpClient.post<SessionResponse>('https://yoga-flow-7a813c31e5f1.herokuapp.com/api/v1/sessions', loginData)
+    // return this.httpClient.post<SessionResponse>('http://localhost:3000/api/v1/sessions', loginData)
   };
 
   submitLogin(form: NgForm) {

@@ -40,7 +40,8 @@ describe('RoutinesFetchService', () => {
       expect(result.data[1].attributes.name).toBe('New Routine');
     });
 
-    const req = httpMock.expectOne('http://localhost:3000/api/v1/routines');
+    const req = httpMock.expectOne('https://yoga-flow-7a813c31e5f1.herokuapp.com/api/v1/routines');
+    // const req = httpMock.expectOne('http://localhost:3000/api/v1/routines');
     expect(req.request.method).toBe('GET');
     expect(req.request.headers.get('Authorization')).toBe('Bearer user-token');
     req.flush(mockRoutinesResponse);
@@ -55,7 +56,8 @@ describe('RoutinesFetchService', () => {
       expect(result.data.attributes.routine_poses.length).toBe(2);
     });
 
-    const req = httpMock.expectOne('http://localhost:3000/api/v1/routines/2');
+    const req = httpMock.expectOne('https://yoga-flow-7a813c31e5f1.herokuapp.com/api/v1/routines/2');
+    // const req = httpMock.expectOne('http://localhost:3000/api/v1/routines/2');
     expect(req.request.method).toBe('GET');
     expect(req.request.headers.get('Authorization')).toBe('Bearer user-token');
     req.flush(mockRoutineDetailsResponse);

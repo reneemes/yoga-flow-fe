@@ -32,7 +32,8 @@ describe('PosesFetchService', () => {
       expect(result[0].data.attributes.sanskrit_name).toBe('Adho Mukha Svanasana');
     });
 
-    const req = httpMock.expectOne('http://localhost:3000/api/v1/poses');
+    const req = httpMock.expectOne('https://yoga-flow-7a813c31e5f1.herokuapp.com/api/v1/poses');
+    // const req = httpMock.expectOne('http://localhost:3000/api/v1/poses');
     expect(req.request.method).toBe('GET');
     req.flush([
       {
@@ -56,7 +57,8 @@ describe('PosesFetchService', () => {
       expect(result.data.attributes.pose_description).toBe('Downward Dog description...');
     });
 
-    const req = httpMock.expectOne('http://localhost:3000/api/v1/poses/1');
+    const req = httpMock.expectOne('https://yoga-flow-7a813c31e5f1.herokuapp.com/api/v1/poses/1');
+    // const req = httpMock.expectOne('http://localhost:3000/api/v1/poses/1');
     expect(req.request.method).toBe('GET');
     req.flush(
       {

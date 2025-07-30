@@ -52,7 +52,8 @@ describe('LoginComponent', () => {
 
     component.submitLogin(form);
 
-    const req = httpMock.expectOne('http://localhost:3000/api/v1/sessions');
+    const req = httpMock.expectOne('https://yoga-flow-7a813c31e5f1.herokuapp.com/api/v1/sessions');
+    // const req = httpMock.expectOne('http://localhost:3000/api/v1/sessions');
     expect(req.request.method).toBe('POST');
     req.flush({
       token: 'user-token',
