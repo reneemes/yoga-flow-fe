@@ -1,4 +1,4 @@
-export interface Pose {
+export interface RoutinePose {
   pose_id: number;
   name: string;
   sanskrit_name: string;
@@ -12,7 +12,7 @@ export interface RoutineAttributes {
   name: string;
   description: string;
   difficulty: string;
-  routine_poses: Pose[];
+  routine_poses: RoutinePose[];
 }
 
 export interface RoutineItem {
@@ -21,7 +21,7 @@ export interface RoutineItem {
   attributes: RoutineAttributes;
 }
 
-export interface RoutineResponse {
+export interface Routine {
   data: RoutineItem[];
 }
 

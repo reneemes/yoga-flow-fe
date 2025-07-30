@@ -5,36 +5,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app.state';
 import { selectToken } from '../../../store/auth/auth.selectors';
 
-export interface Pose {
-  pose_id: number;
-  name: string;
-  sanskrit_name: string;
-  image_url: string;
-  description: string;
-  translation_name: string;
-  pose_benefits: string;
-}
-
-export interface RoutineAttributes {
-  name: string;
-  description: string;
-  difficulty: string;
-  routine_poses: Pose[];
-}
-
-export interface RoutineItem {
-  id: string;
-  type: string;
-  attributes: RoutineAttributes;
-}
-
-export interface RoutineResponse {
-  data: RoutineItem[];
-}
-
-export interface RoutineDetails {
-  data: RoutineItem;
-}
+import { Routine } from '../../interfaces/routines.interface';
+import { RoutineDetails } from '../../interfaces/routines.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -46,28 +18,19 @@ export class RoutinesFetchService {
     private store: Store<AppState>
   ) {
     this.store.select(selectToken).subscribe(token => {
-      // this.token = token;
       this.tokenSubject.next(token);
     });
   }
-  // token: string | null = '';
 
   private tokenSubject = new BehaviorSubject<string | null>('');
-  // token$: Observable<string | null> = this.store.select(selectToken);
-  // token$: Observable<string | null> = of(''); // Initialize with an empty string observable
-  // this.store.select(selectToken).subscribe(token => {
-  //   // use token
-  // });
 
-  getRoutines(): Observable<RoutineResponse> {
-    // const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+  getRoutines(): Observable<Routine> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenSubject.value}`);
 
-    return this.httpClient.get<RoutineResponse>('http://localhost:3000/api/v1/routines', { headers });
+    return this.httpClient.get<Routine>('http://localhost:3000/api/v1/routines', { headers });
   };
 
   getOneRoutine(id: number): Observable<RoutineDetails> {
-    // const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenSubject.value}`);
 
     return this.httpClient.get<RoutineDetails>(`http://localhost:3000/api/v1/routines/${id}`, { headers });

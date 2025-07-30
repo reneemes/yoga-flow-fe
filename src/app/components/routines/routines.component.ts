@@ -5,29 +5,7 @@ import { Router } from '@angular/router';
 import { RoutinesFetchService } from '../../services/routines-fetch/routines-fetch.service';
 import { BehaviorSubject } from 'rxjs';
 
-export interface Pose {
-  pose_id: number;
-  name: string;
-  sanskrit_name: string;
-  image_url: string;
-  description: string;
-  translation_name: string;
-  pose_benefits: string;
-}
-export interface RoutineAttributes {
-  name: string;
-  description: string;
-  difficulty: string;
-  routine_poses: Pose[];
-}
-export interface RoutineItem {
-  id: string;
-  type: string;
-  attributes: RoutineAttributes;
-}
-export interface Routine {
-  data: RoutineItem[];
-}
+import { Routine } from '../../interfaces/routines.interface';
 
 @Component({
   selector: 'app-routines',
@@ -53,7 +31,6 @@ export class RoutinesComponent {
       next: routines => {
         this.allRoutines = routines;
         this.routineSubject.next(routines);
-        // console.log('Current Value <><><>', routines.data)
       },
       error: e => {
         console.error('Error fetching routines', e)
