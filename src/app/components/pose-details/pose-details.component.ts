@@ -4,20 +4,7 @@ import { PosesFetchService } from '../../services/poses-fetch/poses-fetch.servic
 import { BehaviorSubject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
-export interface PoseDetails {
-  data: {
-    id: number;
-    type: string;
-    attributes: {
-      name: string;
-      sanskrit_name: string;
-      pose_description: string;
-      pose_benefits: string;
-      translation_name: string;
-      image_url: string
-    }
-  }
-}
+import { PoseDetails } from '../../interfaces/poses.interface';
 
 @Component({
   selector: 'app-pose-details',

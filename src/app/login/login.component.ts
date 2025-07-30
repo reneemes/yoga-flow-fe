@@ -1,10 +1,28 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { loginSuccess } from '../../store/auth/auth.actions';
+import { AppState } from '../../store/app.state'
+import { Store } from '@ngrx/store';
 
 interface User {
-  email: string,
+  email: string;
   password: string
+}
+interface SessionResponse {
+  token: string;
+  user: {
+    data: {
+      id: number;
+      type: string;
+      attributes: {
+        name: string;
+        email: string
+      }
+    }
+  }
 }
 
 @Component({
@@ -15,7 +33,12 @@ interface User {
   standalone: true
 })
 export class LoginComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private httpClient: HttpClient,
+    private store: Store<AppState>,
+  ) {}
+
   title = "Login";
 
   user: User = {
@@ -30,35 +53,32 @@ export class LoginComponent {
     }
   }
 
-  async submitLogin(form: NgForm) {
+  loginUser(loginData: User): Observable<SessionResponse> {
+    return this.httpClient.post<SessionResponse>('https://yoga-flow-7a813c31e5f1.herokuapp.com/api/v1/sessions', loginData)
+    // return this.httpClient.post<SessionResponse>('http://localhost:3000/api/v1/sessions', loginData)
+  };
+
+  submitLogin(form: NgForm) {
     if(form.valid) {
-      const url = "http://localhost:3000/api/v1/sessions";
       const loginData = {
         email: this.user.email,
         password: this.user.password
       }
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify(loginData)
-        });
 
-        if (!response.ok) {
-          throw new Error(`Response status: ${response.status}`);
+      this.loginUser(loginData).subscribe({
+        next: response => {
+          const token = response.token;
+          console.log('TOKEN', token);
+          // Dispatch the loginSuccess action to tell the store
+          // the token needs to be updated
+          // then other parts of the app can use the token from state
+          this.store.dispatch(loginSuccess({ token }));
+          this.router.navigate(['home']);
+        },
+        error: e => {
+          console.error('Error starting user session', e);
         }
-
-        const json = await response.json();
-        console.log(json);
-        console.log(json.token);
-        this.router.navigate(['home']);
-      } catch (error: any) {
-        console.error(error.message);
-        alert("Invalid login credentials");
-      }
+      })
     }
   }
 

@@ -5,17 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 
-export interface Pose {
-  data: {
-    id: number;
-    type: string;
-    attributes: {
-      name: string;
-      sanskrit_name: string;
-      image_url: string
-    }
-  }
-}
+import { Pose } from '../../interfaces/poses.interface';
 
 @Component({
   selector: 'app-poses',

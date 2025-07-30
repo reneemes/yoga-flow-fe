@@ -1,29 +1,24 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { HeaderComponent } from './header.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HeaderComponent } from './header.component';
+import { provideRouter } from '@angular/router';
 
-// describe('HeaderComponent', () => {
-//   let component: HeaderComponent;
-//   let fixture: ComponentFixture<HeaderComponent>;
+describe('HeaderComponent', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       imports: [HeaderComponent]
-//     })
-//     .compileComponents();
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [HeaderComponent],
+      providers: [provideRouter([])]
+    })
+    .compileComponents();
 
-//     fixture = TestBed.createComponent(HeaderComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-//   it('should create the header', () => {
-//     expect(component).toBeTruthy();
-//   });
-
-//   // it('should have the title of the application', () => {
-//     // const compiled = fixture.nativeElement as HTMLElement;
-//     // expect(compiled.querySelector('.title')?.textContent).toContain('YogaFlow');
-//     // expect(compiled.querySelector('.poses-button')?.textContent)
-//     //   .toContain('Poses');
-//   // });
-// });
+  it('should create the header', () => {
+    expect(component).toBeTruthy();
+  });
+});
