@@ -14,7 +14,7 @@
 </p>
 
 ![screenshot](/public/assets/yogaflow-home.png)
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f6cdf768-eb37-40dd-89a5-487bfae52e92/deploy-status)](https://app.netlify.com/projects/yogaflow-app/deploys)
 ## Key Features
 
 * Explore Yoga Poses
