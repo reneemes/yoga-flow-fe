@@ -36,7 +36,7 @@ export class RoutinesComponent {
         console.error('Error fetching routines', e)
       }
     });
-  }
+  };
 
   searchRoutines(event: any) {
     if (this.routineSearch.trim() === "") {
@@ -53,7 +53,7 @@ export class RoutinesComponent {
       });
       this.routineSubject.next({ data: filtered });
     }
-  }
+  };
 
   toggleFilterMenu() {
     this.filterMenuOpen = !this.filterMenuOpen;
@@ -66,7 +66,7 @@ export class RoutinesComponent {
     { difficulty: 'Beginner', isChecked: false },
     { difficulty: 'Intermediate', isChecked: false },
     { difficulty: 'Advanced', isChecked: false }
-  ]
+  ];
 
   filterByDifficulty() {
     // return early if routineData is null
@@ -98,7 +98,7 @@ export class RoutinesComponent {
       })
       this.routineSubject.next({ data: filtered });
     }
-  }
+  };
 
   handleRoutineClick(id: string) {
     this.router.navigate([`routines/${id}`]);

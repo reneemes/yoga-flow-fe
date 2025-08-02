@@ -22,10 +22,11 @@ export class RoutinesFetchService {
     });
   }
 
-  private tokenSubject = new BehaviorSubject<string | null>('');
+  private tokenSubject = new BehaviorSubject<string | null>(null);
 
   getRoutines(): Observable<Routine> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenSubject.value}`);
+    console.log("HERE <><<>>", this.tokenSubject.value)
 
     return this.httpClient.get<Routine>('https://yoga-flow-7a813c31e5f1.herokuapp.com/api/v1/routines', { headers });
     // return this.httpClient.get<Routine>('http://localhost:3000/api/v1/routines', { headers });
