@@ -25,9 +25,9 @@ describe('HomeComponent', () => {
 
   it('should display the welcome message', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h2')?.textContent).toContain('Namaste');
+    expect(compiled.querySelector('h2')?.textContent).toContain('Welcome to YogaFlow!');
     expect(compiled.querySelector('.welcome-text')?.textContent)
-      .toContain('Welcome to YogaFlow');
+      .toContain('Namaste');
   });
 
   it('should have a meditation image', () => {
