@@ -11,10 +11,12 @@ import { RouterModule } from '@angular/router';
         <div class="buttons">
           <a routerLink="/poses" class="poses-button">Poses</a>
           <a routerLink="/routines" class="routines-button">Routines</a>
+          <a routerLink="/" class="logout-button">Logout</a>
         </div>
         <div class="mobile-buttons">
           <a routerLink="/poses" class="poses-b">Poses</a>
           <a routerLink="/routines" class="routines-b">Routines</a>
+          <a routerLink="/" class="logout-b">Routines</a>
         </div>
       </nav>
     </div>
