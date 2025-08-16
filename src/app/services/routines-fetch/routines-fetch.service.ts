@@ -2,11 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../store/app.state';
-import { selectToken } from '../../../store/auth/auth.selectors';
+import { AuthState } from '../../state/auth/auth.reducer'
+import { selectToken } from '../../state/auth/auth.selectors';
 
-import { Routine } from '../../interfaces/routines.interface';
-import { RoutineDetails } from '../../interfaces/routines.interface';
+import { Routine, RoutineDetails } from '../../interfaces/routines.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class RoutinesFetchService {
 
   constructor(
     private httpClient: HttpClient,
-    private store: Store<AppState>
+    private store: Store<AuthState>
   ) {
     this.store.select(selectToken).subscribe(token => {
       this.tokenSubject.next(token);
