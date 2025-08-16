@@ -8,8 +8,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 
 import { provideState } from '@ngrx/store';
-import { tokenKey } from '../store/auth/auth.selectors';
-import { authReducer } from '../store/auth/auth.reducer';
+import { tokenKey } from './state/auth/auth.selectors';
+import { authReducer } from './state/auth/auth.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +19,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore(), // initializes the global store
     provideState(tokenKey, authReducer), // feature state for auth
-    // We want to manage a slice of state called auth and here is the reducer for it
   ]
 };
