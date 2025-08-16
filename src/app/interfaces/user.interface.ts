@@ -1,9 +1,9 @@
-interface User {
+export interface User {
   email: string;
   password: string
 }
 
-interface SessionResponse {
+export interface SessionResponse {
   token: string;
   user: {
     data: {

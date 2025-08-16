@@ -3,27 +3,10 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { loginSuccess } from '../../store/auth/auth.actions';
-import { AppState } from '../../store/app.state'
+import { login } from '../state/auth/auth.actions';
+import { AuthState } from '../state/auth/auth.reducer';
 import { Store } from '@ngrx/store';
-
-interface User {
-  email: string;
-  password: string
-}
-interface SessionResponse {
-  token: string;
-  user: {
-    data: {
-      id: number;
-      type: string;
-      attributes: {
-        name: string;
-        email: string
-      }
-    }
-  }
-}
+import { User, SessionResponse } from '../interfaces/user.interface'
 
 @Component({
   selector: 'app-login',
@@ -36,7 +19,7 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private httpClient: HttpClient,
-    private store: Store<AppState>,
+    private store: Store<AuthState>,
   ) {}
 
   title = "Login";
@@ -68,11 +51,8 @@ export class LoginComponent {
       this.loginUser(loginData).subscribe({
         next: response => {
           const token = response.token;
-          console.log('TOKEN', token);
-          // Dispatch the loginSuccess action to tell the store
-          // the token needs to be updated
-          // then other parts of the app can use the token from state
-          this.store.dispatch(loginSuccess({ token }));
+          const name = response.user.data.attributes.name;
+          this.store.dispatch(login({ token: token, name: name }));
           this.router.navigate(['home']);
         },
         error: e => {

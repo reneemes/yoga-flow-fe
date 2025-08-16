@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { loginSuccess } from '../../store/auth/auth.actions';
+import { login } from '../state/auth/auth.actions';
 import { of } from 'rxjs';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
@@ -69,6 +69,6 @@ describe('LoginComponent', () => {
       }
     });
 
-    expect(mockStore.dispatch).toHaveBeenCalledWith(loginSuccess({ token: 'user-token' }));
+    expect(mockStore.dispatch).toHaveBeenCalledWith(login({ token: 'user-token', name: 'Dolly P' }));
   });
 });
