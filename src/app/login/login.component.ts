@@ -22,7 +22,7 @@ export class LoginComponent {
     private store: Store<AuthState>,
   ) {}
 
-  title = "Login";
+  title = "YogaFlow";
 
   user: User = {
     email: '',
