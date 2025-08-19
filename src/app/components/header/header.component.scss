@@ -15,28 +15,33 @@
 
     .title {
       color: var(--dark-green);
-      font-size: 60px;
+      font-size: 3.5rem;
       cursor: pointer;
       transition-duration: 0.4s;
 
       &:hover {
         color: var(--light-green);
       }
+
+      @media screen and (max-width: 480px) {
+        font-size: 2rem;
+      }
     }
 
     .buttons {
       display: flex;
       align-items: center;
+      gap: 0;
 
-      a {
+      .poses-button,
+      .routines-button,
+      .logout-button {
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 5px;
-        background-color: white;
         height: 40px;
         width: 150px;
-        margin: 0 8px;
         cursor: pointer;
         font-size: 30px;
         color: var(--dark-green);
@@ -46,16 +51,11 @@
           color: var(--light-green);
           background-color: whitesmoke;
         }
-      }
 
-      i {
-        font-size: 50px;
-        color: var(--dark-green);
-        cursor: pointer;
-        transition-duration: 0.4s;
-
-        &:hover {
-          color: var(--light-green);
+        @media screen and (max-width: 480px) {
+          font-size: 1rem;
+          width: 80px;
+          margin: 0;
         }
       }
     }

@@ -1,61 +1,44 @@
-.top-elements {
+.home {
+  min-height: 100vh;
+  background-image: url("/assets/waterfall2.jpg");
+  background-color: rgba(255,255,255,0.4);
+  background-blend-mode: lighten;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+}
+.home-contents {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  width: 100%;
-  margin-top: 80px;
+  justify-content: center;
+  height: 80vh;
+  width: 90vw;
   
   .top-text {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
     width: 80vw;
     color: var(--dark-green);
-    font-size: 1.5rem;
+    color: black;
+    font-size: 2rem;
+    font-weight: 400;
     
-    h2 {
-      font-size: 2.75rem;
+    .welcome-message {
+      font-size: 5rem;
       margin-bottom: 0;
+      text-align: center;
     }
 
     .welcome-text {
       text-align: center;
-    }
-  }
-
-  .welcome-img {
-    object-fit: cover;
-    width: 100%;
-    height: 50vh;
-    padding: 10px 0;
-  }
-}
-
-.nav-buttons {
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  margin: 40px 0;
-
-  a {
-    border-radius: 5px;
-    background-color: var(--light-green);
-    box-shadow: var(--shadow-elevation-medium);
-
-    color: black;
-    font-size: larger;
-    text-align: center;
-    line-height: 50px;
-    height: 50px;
-    width: 300px;
-    transition-duration: 0.4s;
-    margin: 0 10px;
-
-    &:hover {
-      background-color: var(--dark-green);
-      color: white;
     }
   }
 }

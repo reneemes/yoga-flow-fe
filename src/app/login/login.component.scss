@@ -1,128 +1,134 @@
 .login {
   display: flex;
+  align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #a8e6cf 0%, #dcedc8 50%, #f8f8f8 100%);
 
-  .left-side {
-    background-color: white;
+  overflow: hidden;
+  position: relative;
+  line-height: 1.6;
+  padding: 20px;
+
+  .geometric-img {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    height: 70vh;
-    min-height: 510px;
-    min-width: 440px;
-    margin-top: 10vh;
-    border-radius: 8px 0 0 8px;
-    box-shadow: 4px 3px 8px gray;
+    justify-content: center;
+  }
+
+  h2 {
+    color: #2F7C31;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    letter-spacing: 5px;
+    text-align: center;
+  }
+
+  .login-div {
+    width: 440px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    border-radius: 32px;
+    padding: 48px 40px;
     
-    .email-div,
-    .password-div,
-    .login-div {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    label {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-    
-    input {
-      border: 1px solid black;
-      padding-left: 8px;
-      font-size: 1.5rem;
-      margin-bottom: 3vh;
-      height: 40px;
-      width: 300px;
-    }
-    
-    input,
-    button {
-      border-radius: 10px;
-    }
-    
+    .email,
+    .password,
     .login-button {
-      border: none;
-      background-color: var(--peach);
-      font-size: 3vh;
-      height: 50px;
-      width: 200px;
-      margin-top: 15px;
+      width: 100%;
+      border-radius: 20px;
+      font-size: 16px;
+      font-weight: 400;
+      outline: none;
+    }
+
+    .login-button {
+      padding: 18px 60px;
+      border: 1px solid rgba(76, 175, 80, 0.2);
+    }
+
+    .login-button,
+    .toggle-password,
+    .signup-link {
+      cursor: pointer;
+    }
+
+    .email,
+    .password {
+      color: #2F7C31;
+      background: rgba(76, 175, 80, 0.05);
+      border: 1.5px solid rgba(76, 175, 80, 0.2);
+      padding: 18px 60px 18px 20px;
+    }
+
+    ::placeholder {
+      color: darkseagreen
     }
 
     .show-password {
       display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
+      justify-content: flex-start;
       align-items: center;
-      padding: 0;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+      gap: 5px;
+      color: darkseagreen;
 
       .toggle-password {
-        margin: 0;
-        height: 20px;
-        width: 30px;
+        // appearance: none;
+        // -webkit-appearance: none;
+        width: 1.5em;
+        height: 1.5rem;
+        accent-color: #2F7C31;
       }
     }
-  }
-  
-  h2,
-  h3 {
-    font-size: 2.75rem;
-  }
-  
-  button {
-    cursor: pointer;
-  }
-  
-  .right-side {
-    background-color: var(--peach);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 70vh;
-    min-height: 510px;
-    min-width: 400px;
-    margin-top: 10vh;
-    border-radius: 0 8px 8px 0;
-    box-shadow: 2px 3px 8px gray;
-    
-    h3 {
-      padding: 0 2vh;
-      text-align: center;
-    }
-    
-    p {
-      font-size: x-large;
-    }
-    
-    .sign-up-button {
-      border: none;
-      border-radius: 10px;
-      background-color: white;
-      font-size: 1.4rem;
-      height: 50px;
-      width: 200px;
-      margin-top: 15px;
+
+    .email,
+    .password,
+    .show-password {
+      margin: 15px 0;
     }
 
-    .example-login {
+    .login-button {
+      background-color: #2F7C31;
+      background-color: var(--light-green);
+      color: whitesmoke;
+      font-weight: 600;
+
+      &:disabled {
+        background-color: #C3D9C4;
+      }
+    }
+
+    .divider {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      border-radius: 2px;
-      background-color: powderblue;
-      height: 300px;
-      width: 300px;
-      margin-top: 50px;
-      transform: rotate(5deg);
-      box-shadow: var(--shadow-elevation-medium);
-      font-family: "Indie Flower", cursive;
+      margin: 32px 0;
+      gap: 16px;
 
-      .example-title {
-        font-size: 2rem;
-        margin: 10px 0 0 0;
+      .divider-branch {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.4), transparent);
+      }
+
+      .divider-center {
+        color: darkseagreen;
+      }
+    }
+
+    .signup-div {
+      text-align: center;
+      font-size: 14px;
+      color: darkseagreen;
+
+      .signup-link {
+        color: #427C42;
       }
     }
   }
