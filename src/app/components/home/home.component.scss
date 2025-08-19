@@ -21,10 +21,12 @@
   width: 90vw;
   
   .top-text {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    
     width: 80vw;
     color: var(--dark-green);
     color: black;
@@ -39,6 +41,15 @@
 
     .welcome-text {
       text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
   }
 }
