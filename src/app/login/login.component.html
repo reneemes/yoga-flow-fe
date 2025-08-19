@@ -4,20 +4,16 @@
     <h2>{{title}}</h2>
     <form #loginForm="ngForm" (ngSubmit)="submitLogin(loginForm)">
       <div class="form-div">
-        <!-- <label for="email">Email</label> -->
         <input type="email" id="email" name="email" class="email" placeholder="Email Address" [(ngModel)]="user.email" required />
       </div>
       <div class="form-div">
-        <!-- <label for="password">Password</label> -->
         <input type="password" id="password" name="password" class="password" placeholder="Password" [(ngModel)]="user.password" required />
       </div>
       <div class="show-password">
         <input type="checkbox" (click)="togglePassword()" class="toggle-password"/>
         <label>Show Password</label>
       </div>
-      <!-- <div class="login-button"> -->
         <button type="submit" [disabled]="loginForm.invalid || !validateEmail()" class="login-button">Login</button>
-      <!-- </div> -->
     </form>
     <div class="divider">
       <div class="divider-branch"></div>
@@ -33,15 +29,4 @@
       <a class="signup-link">Begin your journey</a>
     </div>
   </section>
-  <!-- <section class="signup-div">
-    <h3>Welcome to YogaFlow</h3>
-    <p>Don't have an account?</p>
-    <button class="sign-up-button" disabled>Sign Up</button>
-    <div class="example-login">
-      <p class="example-title">Example User Login</p>
-      <p>Email: dollyP&#64;email.com <br/>
-      Password: Jolene123</p>
-    </div>
-  </section> -->
-
 </div>
